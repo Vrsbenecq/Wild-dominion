@@ -5,3 +5,14 @@ button:hover,button.active{border-color:#e8c477;color:#e8c477}
 button:disabled{opacity:.4;cursor:default}
 nav button{flex:1;max-width:180px;border:0;background:none;font-size:13px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}
+/* V1.1.1: keep navigation above system gesture areas. */
+:root{--nav-height:76px;--nav-safe:max(12px,env(safe-area-inset-bottom,0px));}
+html{overflow-x:clip;overscroll-behavior-x:none;scroll-padding-bottom:calc(var(--nav-height) + var(--nav-safe) + 16px)}
+body{overflow-x:clip}
+header{padding-top:calc(24px + env(safe-area-inset-top,0px))}
+main{padding-bottom:calc(var(--nav-height) + var(--nav-safe) + 24px);padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+#nav{height:calc(var(--nav-height) + var(--nav-safe));padding:6px max(4px,env(safe-area-inset-right,0px)) var(--nav-safe) max(4px,env(safe-area-inset-left,0px));align-items:stretch;touch-action:manipulation;overscroll-behavior:contain}
+#nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:48px;padding:5px 1px;font-size:clamp(10px,3vw,13px);line-height:1.15;white-space:nowrap;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;color:#c4d2c7}
+#nav button svg{width:23px;height:23px;flex:none;pointer-events:none}
+#nav button.active{color:#e8c477;background:#243b2c}
+#nav button:focus-visible{outline:2px solid #e8c477;outline-offset:-2px}
