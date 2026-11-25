@@ -35,7 +35,7 @@ def inat(taxon):
     t=next((x for x in ts if x.get('name','').casefold()==taxon.casefold() and x.get('is_active',True)),None)
     if not t: return
     for grade in ('research',):
-        obs=api(endpoint+'observations',taxon_id=t['id'],quality_grade=grade,photos='true',photo_license='cc0,cc-by',per_page=50,order_by='votes').get('results',[])
+        obs=api(endpoint+'observations',taxon_id=t['id'],quality_grade=grade,photos='true',photo_license='cc0,cc-by',per_page=100,order_by='votes').get('results',[])
         for o in obs:
             ot=o.get('taxon') or {}; ids=ot.get('ancestor_ids',[])
             if ot.get('id')!=t['id'] and t['id'] not in ids: continue
@@ -45,10 +45,11 @@ def inat(taxon):
                 # iNaturalist CC BY is normally 4.0; verify exact version on photo page before publishing.
                 url=p.get('url','').replace('/square.','/large.')
                 c=make(url,p.get('attribution'),lic,f'https://www.inaturalist.org/photos/{p.get("id")}',ot.get('name',''),taxon,'iNaturalist',85 if grade=='research' else 65)
-                if c: yield c
+                if c:
+                    c['observation']=str(o['id']); yield c; break
 
 def commons(taxon):
-    for q in [dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=50),dict(generator='search',gsrsearch='"'+taxon+'" filetype:bitmap',gsrnamespace=6,gsrlimit=50)]:
+    for q in [dict(generator='search',gsrsearch='"'+taxon+'" '+('underwater' if taxon in MARINE else 'wildlife')+' filetype:bitmap',gsrnamespace=6,gsrlimit=50),dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=50),dict(generator='search',gsrsearch='"'+taxon+'" filetype:bitmap',gsrnamespace=6,gsrlimit=50)]:
         for p in get(action='query',prop='imageinfo',iiprop='url|extmetadata|mime|size',iiurlwidth=1200,**q):
             i=p.get('imageinfo',[{}])[0]; m=i.get('extmetadata',{}); v=lambda k:clean(m.get(k,{}).get('value',''))
             desc=p['title']+' '+v('ImageDescription')+' '+v('Categories')
@@ -66,13 +67,15 @@ def gbif(taxon):
             if p.get('type')!='StillImage' or BLOCK.search(str(p.get('title',''))+' '+str(p.get('description',''))): continue
             if o.get('basisOfRecord') not in ('HUMAN_OBSERVATION','OBSERVATION','MACHINE_OBSERVATION'): continue
             c=make(p.get('identifier',''),p.get('creator') or p.get('rightsHolder'),p.get('license'),p.get('references') or f'https://www.gbif.org/occurrence/{o["key"]}',o.get('scientificName',''),taxon,'GBIF',60)
-            if c: yield c
+            if c:
+                c['observation']=str(o['key']); yield c; break
 
 
 taxa='Panthera leo|Acinonyx jubatus|Loxodonta africana|Giraffa|Crocuta crocuta|Ceratotherium simum|Diceros bicornis|Equus quagga|Suricata suricatta|Syncerus caffer|Sagittarius serpentarius|Struthio camelus|Mellivora capensis|Canis lupus|Ursus arctos|Vulpes vulpes|Lynx lynx|Cervus elaphus|Sus scrofa|Meles meles|Alces alces|Procyon lotor|Bubo virginianus|Sciurus vulgaris|Ursus americanus|Panthera tigris tigris|Panthera onca|Gorilla gorilla|Pongo|Pan troglodytes|Bradypus|Okapia johnstoni|Tapirus|Harpia harpyja|Eunectes murinus|Dendrobatidae|Ramphastidae|Neofelis nebulosa|Orcinus orca|Carcharodon carcharias|Balaenoptera musculus|Megaptera novaeangliae|Tursiops truncatus|Enteroctopus dofleini|Mobula birostris|Chelonia mydas|Sphyrnidae|Xiphias gladius|Sphyraena barracuda|Enhydra lutris|Odobenus rosmarus|Ursus maritimus|Vulpes lagopus|Lepus arcticus|Ovibos moschatus|Rangifer tarandus|Bubo scandiacus|Monodon monoceros|Delphinapterus leucas|Phoca vitulina|Aptenodytes forsteri|Hydrurga leptonyx|Sterna paradisaea|Camelus dromedarius|Vulpes zerda|Leiurus quinquestriatus|Crotalus cerastes|Gopherus agassizii|Heloderma suspectum|Addax nasomaculatus|Caracal caracal|Felis margarita|Jaculus|Geococcyx californianus|Moloch horridus|Panthera uncia|Aquila chrysaetos|Capra ibex|Oreamnos americanus|Ovis canadensis|Ochotona|Vultur gryphus|Puma concolor|Ailurus fulgens|Hemitragus jemlahicus|Chinchilla|Falco peregrinus|Crocodylus porosus|Crocodylus niloticus|Hippopotamus amphibius|Alligator mississippiensis|Hydrochoerus hydrochaeris|Castor|Ornithorhynchus anatinus|Phoenicopterus|Ardea herodias|Bubalus bubalis|Varanus komodoensis|Ophiophagus hannah|Dynastinae'.split('|')
 
 
 import os, statistics
+from collections import Counter, defaultdict
 from PIL import ImageFilter, ImageStat
 TARGET={'Moose','Toucan','Blue Whale','Swordfish','Narwhal','Chinchilla'}
 def slug(n): return re.sub('[^a-z0-9]+','-',n.lower()).strip('-')
@@ -88,8 +91,44 @@ def catalog():
     return [dict(name=n,taxon=t) for n,t in zip(names,taxa)]
 def dashboard(records):
     data=json.dumps(records,ensure_ascii=False).replace('<','\\u003c')
-    page="""<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>Wild Dominion review</title><style>body{background:#14291f;color:#eee;font:16px system-ui;margin:20px}a{color:#e4c77c}article{border-bottom:1px solid #647b68;padding:16px 0}.grid{display:flex;flex-wrap:wrap;gap:12px}.tile{width:220px}img{width:100%;height:150px;object-fit:contain}button,input{padding:10px;margin:5px}</style><h1>Wild Dominion photo review</h1><p>Check actual species and original photo licence before approving. Scores are metadata and image-quality heuristics only.</p><input id=q placeholder='Search animals'><button id=export>Export decisions JSON</button><main id=m></main><script>const data=DATA;let decisions={};try{decisions=JSON.parse(localStorage.getItem('wd-review')||'{}')}catch(e){};const m=document.querySelector('#m');function el(t,txt,parent){let e=document.createElement(t);e.textContent=txt;parent.append(e);return e}function render(){m.replaceChildren();for(const [name,cs] of Object.entries(data)){if(!name.toLowerCase().includes(q.value.toLowerCase()))continue;let a=el('article','',m);el('h2',name,a);let g=el('div','',a);g.className='grid';for(const c of cs){let t=el('div','',g);t.className='tile';let im=el('img','',t);im.src=c.path;im.loading='lazy';el('p',c.title+' | '+c.score+' | '+c.author+' | '+c.license,t);for(const [label,url] of [['Source',c.source],['Licence',c.license_url]]){let l=el('a',label+' ',t);if(/^https:\/\//.test(url))l.href=url;l.target='_blank';l.rel='noopener'}let b=el('button',decisions[name]===c.path?'Selected':'Approve',t);b.onclick=()=>{if(confirm('I checked the species, original licence and attribution')){decisions[name]=c.path;save();render()}}}let b=el('button','Reject / clear',a);b.onclick=()=>{delete decisions[name];save();render()}}}function save(){try{localStorage.setItem('wd-review',JSON.stringify(decisions))}catch(e){}}q.oninput=render;document.querySelector('#export').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(decisions,null,2)],{type:'application/json'}));a.download='decisions.json';a.click()};render()</script>"""
+    page="""<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>Wild Dominion review</title><style>body{background:#14291f;color:#eee;font:16px system-ui;margin:20px}a{color:#e4c77c}article{border-bottom:1px solid #647b68;padding:16px 0}.grid{display:flex;flex-wrap:wrap;gap:12px}.tile{width:220px}img{width:100%;height:150px;object-fit:contain}button,input{padding:10px;margin:5px}</style><h1>Wild Dominion photo review</h1><p>Check actual species and original photo licence before approving. Scores combine metadata, image quality and experimental CLIP classification; not proof of species or licence.</p><input id=q placeholder='Search animals'><button id=export>Export decisions JSON</button><main id=m></main><script>const data=DATA;let decisions={};try{decisions=JSON.parse(localStorage.getItem('wd-review')||'{}')}catch(e){};const m=document.querySelector('#m');function el(t,txt,parent){let e=document.createElement(t);e.textContent=txt;parent.append(e);return e}function render(){m.replaceChildren();for(const [name,cs] of Object.entries(data)){if(!name.toLowerCase().includes(q.value.toLowerCase()))continue;let a=el('article','',m);el('h2',name,a);let g=el('div','',a);g.className='grid';for(const c of cs){let t=el('div','',g);t.className='tile';let im=el('img','',t);im.src=c.path;im.loading='lazy';el('p',c.title+' | '+c.score+' | '+c.author+' | '+c.license,t);for(const [label,url] of [['Source',c.source],['Licence',c.license_url]]){let l=el('a',label+' ',t);if(/^https:\/\//.test(url))l.href=url;l.target='_blank';l.rel='noopener'}let b=el('button',decisions[name]===c.path?'Selected':'Approve',t);b.onclick=()=>{if(confirm('I checked the species, original licence and attribution')){decisions[name]=c.path;save();render()}}}let b=el('button','Reject / clear',a);b.onclick=()=>{delete decisions[name];save();render()}}}function save(){try{localStorage.setItem('wd-review',JSON.stringify(decisions))}catch(e){}}q.oninput=render;document.querySelector('#export').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(decisions,null,2)],{type:'application/json'}));a.download='decisions.json';a.click()};render()</script>"""
     (OUT/'review.html').write_text(page.replace('DATA',data,1))
+MARINE={'Balaenoptera musculus','Xiphias gladius','Monodon monoceros'}
+class Visual:
+    def __init__(self):
+        import torch
+        from transformers import CLIPModel, CLIPProcessor
+        self.torch=torch; torch.set_num_threads(4)
+        self.model=CLIPModel.from_pretrained('openai/clip-vit-base-patch32').eval()
+        self.processor=CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32')
+    def score(self,im,name):
+        labels=[f'a wildlife photograph of a living {name}, animal clearly visible', 'a photograph of antlers or bones without an animal','a photograph of animal footprints or droppings','a dead stranded animal or carcass','a photograph of a tiny distant animal or only a fin above water','a drawing or sculpture or museum specimen','a photograph of a person or unrelated object','a photograph with a large visible text watermark']
+        with self.torch.inference_mode():
+            inputs=self.processor(text=labels,images=im,return_tensors='pt',padding=True)
+            probs=self.model(**inputs).logits_per_image.softmax(dim=1)[0].tolist()
+        return probs[0],labels[max(range(len(probs)),key=probs.__getitem__)],probs
+
+def diverse_pool(pool,limit=100):
+    groups=defaultdict(list)
+    for c in sorted(pool,key=lambda c:-c['score']): groups[c['provider']].append(c)
+    out=[]
+    while groups and len(out)<limit:
+        for k in list(groups):
+            out.append(groups[k].pop(0))
+            if not groups[k]: del groups[k]
+            if len(out)>=limit: break
+    return out
+
+def select_diverse(items,limit=8):
+    chosen=[]; authors=Counter(); observations=set(); providers=Counter()
+    pending=sorted(items,key=lambda c:-c['score'])
+    while pending and len(chosen)<limit:
+        pending.sort(key=lambda c:(providers[c['provider']],-c['score']))
+        c=pending.pop(0); a=c['author'].strip().casefold(); o=(c['provider'],c.get('observation') or c['source'])
+        if authors[a]>=2 or o in observations: continue
+        chosen.append(c);authors[a]+=1;observations.add(o);providers[c['provider']]+=1
+    return sorted(chosen,key=lambda c:-c['score'])
+
 def run():
     ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);args=ap.parse_args()
     db=OUT/'database.json'; records=json.loads(db.read_text()) if db.exists() else {}; rows=catalog(); errors=[]; hashes=[int(c['dhash'],16) for cs in records.values() for c in cs if 'dhash' in c]
@@ -99,16 +138,16 @@ def run():
         for n,path in decisions.items():
             c=next(c for c in records[n] if c['path']==path); target='assets/animals/'+slug(n)+'.webp'; f=dest/target;f.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(OUT/path,f);credits[n]={**c,'path':target,'status':'reviewer approved'}
         atomic(dest/'IMAGE_CREDITS.json',credits);return
+    visual=Visual()
     rows=[r for r in rows if args.all or r['name'] in TARGET][args.offset:args.offset+args.limit]
     for row in rows:
         n,t=row['name'],row['taxon']; existing=records.get(n,[])
-        if len(existing)>=5 and all((OUT/c['path']).exists() for c in existing):continue
-        pool=[]; found=[c for c in existing if (OUT/c['path']).exists()]; urls={c['url'] for c in found}
+        if len(existing)>=5 and all((OUT/c['path']).exists() and 'visual_probability' in c for c in existing):continue
+        pool=[]; found=[c for c in existing if (OUT/c['path']).exists() and 'visual_probability' in c]; urls={c['url'] for c in found}
         for provider in (inat,commons,gbif):
             try:pool.extend(provider(t))
             except Exception as e:errors.append(f'{n} {provider.__name__}: {e}')
-        for c in sorted(pool,key=lambda c:-c['score'])[:100]:
-            if len(found)>=8:break
+        for c in diverse_pool(pool):
             if c['url'] in urls or BLOCK.search(c['title']):continue
             urls.add(c['url'])
             try:
@@ -118,9 +157,12 @@ def run():
                 if any((h^x).bit_count()<=4 for x in hashes):continue
                 gray=im.convert('L');gray.thumbnail((256,256)); contrast=ImageStat.Stat(gray).stddev[0];sharp=ImageStat.Stat(gray.filter(ImageFilter.FIND_EDGES)).mean[0]
                 if contrast<8:continue
-                c['score']=round(min(100,c['score']*.75+min(12,max(im.size)/100)+min(8,contrast/6)+min(5,sharp/5)),1);c['dhash']=f'{h:016x}';c['path']='candidates/'+slug(n)+'-'+hashlib.sha256(c['url'].encode()).hexdigest()[:12]+'.webp';c['status']='candidate; manual review required';im.thumbnail((1200,1200));f=OUT/c['path'];f.parent.mkdir(exist_ok=True);im.save(f,'WEBP',quality=82);hashes.append(h);found.append(c)
+                probability,label,probs=visual.score(im,n)
+                if probability<0.35 or probability<max(probs[1:]):continue
+                c['visual_probability']=round(probability,4);c['visual_label']=label
+                c['score']=round(min(100,c['score']*.75+min(12,max(im.size)/100)+min(8,contrast/6)+min(5,sharp/5)),1);c['score']=round(c['score']*.4+probability*60,1);c['dhash']=f'{h:016x}';c['path']='candidates/'+slug(n)+'-'+hashlib.sha256(c['url'].encode()).hexdigest()[:12]+'.webp';c['status']='candidate; manual review required';im.thumbnail((1200,1200));f=OUT/c['path'];f.parent.mkdir(exist_ok=True);im.save(f,'WEBP',quality=82);hashes.append(h);found.append(c)
             except Exception as e:errors.append(f'{n} download: {e}')
-        records[n]=sorted(found,key=lambda c:-c['score']);atomic(db,records);print(n,len(found),flush=True)
+        records[n]=select_diverse(found);atomic(db,records);print(n,len(records[n]),'selected from',len(found),flush=True)
     atomic(OUT/'IMAGE_CREDITS.json',{n:cs[0] for n,cs in records.items() if cs});atomic(OUT/'ALTERNATIVES.json',{n:cs[1:] for n,cs in records.items() if cs});(OUT/'MISSING.txt').write_text('\n'.join(r['name'] for r in rows if not records.get(r['name'])));(OUT/'ERRORS.txt').write_text('\n'.join(errors));dashboard(records)
     tiles=[(n,c['path']) for n,cs in records.items() for c in cs]
     for start in range(0,len(tiles),40):
