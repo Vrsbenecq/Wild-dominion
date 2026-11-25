@@ -49,7 +49,7 @@ def inat(taxon):
                     c['observation']=str(o['id']); yield c; break
 
 def commons(taxon):
-    for q in [dict(generator='search',gsrsearch='"'+taxon+'" '+('underwater' if taxon in MARINE else 'wildlife')+' filetype:bitmap',gsrnamespace=6,gsrlimit=50),dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=50),dict(generator='search',gsrsearch='"'+taxon+'" filetype:bitmap',gsrnamespace=6,gsrlimit=50)]:
+    for q in ([dict(generator='search',gsrsearch='\"'+taxon+'\" underwater photograph filetype:bitmap',gsrnamespace=6,gsrlimit=100),dict(generator='search',gsrsearch=('swordfish underwater' if taxon=='Xiphias gladius' else 'narwhal whale swimming')+' filetype:bitmap',gsrnamespace=6,gsrlimit=100)] if taxon in MARINE else []) + [dict(generator='search',gsrsearch='"'+taxon+'" '+('underwater' if taxon in MARINE else 'wildlife')+' filetype:bitmap',gsrnamespace=6,gsrlimit=50),dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=50),dict(generator='search',gsrsearch='"'+taxon+'" filetype:bitmap',gsrnamespace=6,gsrlimit=50)]:
         for p in get(action='query',prop='imageinfo',iiprop='url|extmetadata|mime|size',iiurlwidth=1200,**q):
             i=p.get('imageinfo',[{}])[0]; m=i.get('extmetadata',{}); v=lambda k:clean(m.get(k,{}).get('value',''))
             desc=p['title']+' '+v('ImageDescription')+' '+v('Categories')
@@ -77,7 +77,7 @@ taxa='Panthera leo|Acinonyx jubatus|Loxodonta africana|Giraffa|Crocuta crocuta|C
 import os, statistics
 from collections import Counter, defaultdict
 from PIL import ImageFilter, ImageStat
-TARGET={'Moose','Toucan','Blue Whale','Swordfish','Narwhal','Chinchilla'}
+TARGET={'Swordfish','Narwhal'}
 def slug(n): return re.sub('[^a-z0-9]+','-',n.lower()).strip('-')
 def atomic(path,obj):
     tmp=path.with_suffix('.tmp'); tmp.write_text(json.dumps(obj,ensure_ascii=False,indent=2)); tmp.replace(path)
@@ -102,7 +102,8 @@ class Visual:
         self.model=CLIPModel.from_pretrained('openai/clip-vit-base-patch32').eval()
         self.processor=CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32')
     def score(self,im,name):
-        labels=[f'a wildlife photograph of a living {name}, animal clearly visible', 'a photograph of antlers or bones without an animal','a photograph of animal footprints or droppings','a dead stranded animal or carcass','a photograph of a tiny distant animal or only a fin above water','a drawing or sculpture or museum specimen','a photograph of a person or unrelated object','a photograph with a large visible text watermark']
+        detail={'Swordfish':'whole fish with long flat sword-like bill underwater','Narwhal':'living Arctic whale with spiral tusk or clearly visible body','Blue Whale':'large living blue whale with visible body'}.get(name,'clearly visible living animal')
+        labels=[f'a wildlife photograph of a living {name}, {detail}', 'a photograph of antlers or bones without an animal','a photograph of animal footprints or droppings','a dead stranded animal or carcass','a photograph of a tiny distant animal or only a fin above water','a drawing or sculpture or museum specimen','a photograph of a person or unrelated object','a photograph with a large visible text watermark or copyright signature']
         with self.torch.inference_mode():
             inputs=self.processor(text=labels,images=im,return_tensors='pt',padding=True)
             probs=self.model(**inputs).logits_per_image.softmax(dim=1)[0].tolist()
@@ -130,24 +131,35 @@ def select_diverse(items,limit=8):
     return sorted(chosen,key=lambda c:-c['score'])
 
 def run():
-    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--mode',choices=['missing','upgrade','expansion','final-two'],default='final-two');ap.add_argument('--threshold',type=float,default=.45);ap.add_argument('--pool',type=int,default=150);ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);args=ap.parse_args()
     db=OUT/'database.json'; records=json.loads(db.read_text()) if db.exists() else {}; rows=catalog(); errors=[]; hashes=[int(c['dhash'],16) for cs in records.values() for c in cs if 'dhash' in c]
+    approved_file=ROOT/'tools/approved_photos.json'
+    approved=json.loads(approved_file.read_text()) if approved_file.exists() else {}
     if args.decisions:
         decisions=json.loads(args.decisions.read_text()); import shutil
-        dest=ROOT/'approved'; dest.mkdir(exist_ok=True); credits={}
+        dest=ROOT/'approved'; dest.mkdir(exist_ok=True); credits=dict(approved)
         for n,path in decisions.items():
-            c=next(c for c in records[n] if c['path']==path); target='assets/animals/'+slug(n)+'.webp'; f=dest/target;f.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(OUT/path,f);credits[n]={**c,'path':target,'status':'reviewer approved'}
-        atomic(dest/'IMAGE_CREDITS.json',credits);return
+            c=next(c for c in records[n] if c['path']==path)
+            if c['provider']=='Wikimedia':
+                pages=get(action='query',titles=c['title'],prop='imageinfo',iiprop='extmetadata')
+                meta=pages[0]['imageinfo'][0]['extmetadata']; live=licence(clean(meta.get('LicenseUrl',{}).get('value','')))
+                if not live or live[0]!=c['license']: raise ValueError('Licence changed: '+n)
+            target='assets/animals/'+slug(n)+'.webp'; f=dest/target;f.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(OUT/path,f);credits[n]={**c,'path':target,'status':'reviewer approved'}
+        atomic(dest/'IMAGE_CREDITS.json',credits);atomic(dest/'approved_photos.json',credits)
+        with zipfile.ZipFile(OUT/'game-ready.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for f in dest.rglob('*'):
+                if f.is_file(): z.write(f,f.relative_to(dest))
+        return
     visual=Visual()
-    rows=[r for r in rows if args.all or r['name'] in TARGET][args.offset:args.offset+args.limit]
+    rows=[r for r in rows if args.all or args.mode in ('upgrade','expansion') or (args.mode=='missing' and r['name'] not in approved) or (args.mode=='final-two' and r['name'] in TARGET)][args.offset:args.offset+args.limit]
     for row in rows:
         n,t=row['name'],row['taxon']; existing=records.get(n,[])
-        if len(existing)>=5 and all((OUT/c['path']).exists() and 'visual_probability' in c for c in existing):continue
+        if args.mode!='upgrade' and len(existing)>=5 and all((OUT/c['path']).exists() and 'visual_probability' in c for c in existing):continue
         pool=[]; found=[c for c in existing if (OUT/c['path']).exists() and 'visual_probability' in c]; urls={c['url'] for c in found}
         for provider in (inat,commons,gbif):
             try:pool.extend(provider(t))
             except Exception as e:errors.append(f'{n} {provider.__name__}: {e}')
-        for c in diverse_pool(pool):
+        for c in diverse_pool(pool,args.pool):
             if c['url'] in urls or BLOCK.search(c['title']):continue
             urls.add(c['url'])
             try:
@@ -158,7 +170,7 @@ def run():
                 gray=im.convert('L');gray.thumbnail((256,256)); contrast=ImageStat.Stat(gray).stddev[0];sharp=ImageStat.Stat(gray.filter(ImageFilter.FIND_EDGES)).mean[0]
                 if contrast<8:continue
                 probability,label,probs=visual.score(im,n)
-                if probability<0.35 or probability<max(probs[1:]):continue
+                if probability<args.threshold or probability<max(probs[1:]):continue
                 c['visual_probability']=round(probability,4);c['visual_label']=label
                 c['score']=round(min(100,c['score']*.75+min(12,max(im.size)/100)+min(8,contrast/6)+min(5,sharp/5)),1);c['score']=round(c['score']*.4+probability*60,1);c['dhash']=f'{h:016x}';c['path']='candidates/'+slug(n)+'-'+hashlib.sha256(c['url'].encode()).hexdigest()[:12]+'.webp';c['status']='candidate; manual review required';im.thumbnail((1200,1200));f=OUT/c['path'];f.parent.mkdir(exist_ok=True);im.save(f,'WEBP',quality=82);hashes.append(h);found.append(c)
             except Exception as e:errors.append(f'{n} download: {e}')
