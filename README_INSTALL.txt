@@ -1,0 +1,1 @@
+Merge files into existing repository; do not delete other files. Upload assets/animals, js and css files, IMAGE_CREDITS.json, index.html, then version.json last. Two photographs only; remaining species use existing icons. Source metadata checks are from prior conversation; no guarantee of copyright ownership. Browser integration not tested.
