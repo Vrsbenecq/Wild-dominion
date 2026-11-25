@@ -5,7 +5,7 @@ from urllib3.util.retry import Retry
 from PIL import Image, ImageOps
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'review'; OUT.mkdir(exist_ok=True)
-s=requests.Session(); s.headers['User-Agent']='WildDominionPhotoReview/1.1 (https://github.com/Vrsbenecq/Wild-dominion)'
+s=requests.Session(); s.headers['User-Agent']='WildDominionPhotoReview/1.3.3 (https://github.com/Vrsbenecq/Wild-dominion)'
 s.mount('https://',HTTPAdapter(max_retries=Retry(total=3,backoff_factor=2,status_forcelist=[429,500,502,503,504],respect_retry_after_header=True)))
 API='https://commons.wikimedia.org/w/api.php'
 def clean(v): return html.unescape(re.sub('<[^>]+>',' ',v)).strip()
@@ -30,7 +30,7 @@ def candidate(page):
     thumb=info.get('thumburl') or info.get('url','')
     if not thumb.startswith('https://upload.wikimedia.org/'): return
     return thumb,dict(author=author,license=lic,license_url=url,source=source,title=page['title'],description=desc,modifications='Resized and converted to WebP')
-TARGETS = ['African Lion', 'Honey Badger', 'Red Fox', 'Eurasian Lynx', 'Moose', 'Raccoon', 'Red Squirrel', 'Jaguar', 'Western Gorilla', 'Toucan', 'Blue Whale', 'Humpback Whale', 'Hammerhead Shark', 'Great Barracuda', 'Walrus', 'Polar Bear', 'Arctic Fox', 'Arctic Hare', 'Narwhal', 'Arctic Tern', 'Dromedary Camel', 'Deathstalker Scorpion', 'Sidewinder', 'Desert Tortoise', 'Alpine Ibex', 'Puma', 'Chinchilla', 'Saltwater Crocodile', 'Beaver', 'Great Blue Heron', 'Water Buffalo', 'King Cobra', 'Bengal Tiger', 'Sloth', 'Reindeer', 'Orangutan', 'Red Deer', 'Hippopotamus', 'Cheetah', 'Wild Boar', 'European Badger', 'American Black Bear', 'Orca', 'Swordfish', 'Andean Condor', 'Rhinoceros Beetle', 'Beluga Whale', 'Golden Eagle', 'Flamingo', 'Giraffe', 'Thorny Devil', 'Leopard Seal']
+TARGETS = ['African Lion', 'Alpine Ibex', 'Arctic Hare', 'Beaver', 'Chinchilla', 'Deathstalker Scorpion', 'Desert Tortoise', 'Dromedary Camel', 'Great Barracuda', 'Great Blue Heron', 'Hammerhead Shark', 'Humpback Whale', 'King Cobra', 'Narwhal', 'Polar Bear', 'Red Fox', 'Red Squirrel', 'Saltwater Crocodile', 'Toucan', 'Walrus', 'Water Buffalo', 'Western Gorilla']
 WIKI='https://en.wikipedia.org/w/api.php'
 ALIASES={'African Lion':'Lion','Western Gorilla':'Western gorilla','Honey Badger':'Honey badger','Puma':'Cougar','Sidewinder':'Crotalus cerastes','Deathstalker Scorpion':'Deathstalker','Hammerhead Shark':'Hammerhead shark','Toucan':'Toucan','Sloth':'Three-toed sloth','Sea Turtle':'Green sea turtle','Beaver':'Eurasian beaver','Rhinoceros Beetle':'Dynastinae','Water Buffalo':'Water buffalo','Flamingo':'Flamingo'}
 def wiki_titles(name,taxon):
@@ -49,6 +49,26 @@ def queries(name,taxon,errors):
             yield dict(titles='|'.join(titles[i:i+5])), 'wikipedia'
     except Exception as e: errors.append(f'{name}: Wikipedia: {e}')
     for q in [dict(generator='search',gsrsearch='intitle:"'+taxon+'" filetype:bitmap',gsrnamespace=6,gsrlimit=30),dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=30),dict(generator='search',gsrsearch='intitle:"'+name+'" filetype:bitmap',gsrnamespace=6,gsrlimit=30)]: yield q,'commons'
+
+def inat_json(endpoint, **params):
+    r=s.get('https://api.inaturalist.org/v1/'+endpoint,params=params,timeout=40)
+    r.raise_for_status(); time.sleep(1); return r.json().get('results',[])
+
+def inat_candidates(name,taxon,errors):
+    try:
+        taxa_results=inat_json('taxa',q=taxon,per_page=20)
+        match=next((t for t in taxa_results if t.get('name','').casefold()==taxon.casefold() and t.get('is_active',True)),None)
+        if not match: return
+        observations=inat_json('observations',taxon_id=match['id'],quality_grade='research',photo_license='cc0,cc-by',per_page=50,order_by='votes',order='desc')
+        for obs in observations:
+            for photo in obs.get('photos',[]):
+                code=photo.get('license_code'); author=photo.get('attribution','').strip(); url=photo.get('url') or ''
+                if code not in ('cc0','cc-by') or not author or not photo.get('id'): continue
+                if not url.startswith(('https://inaturalist-open-data.s3.amazonaws.com/','https://static.inaturalist.org/','https://www.inaturalist.org/')): continue
+                url=re.sub(r'/square(?=\.)','/medium',url)
+                # iNaturalist photo-level license codes do not specify version; verify original page before approval.
+                yield url,dict(author=author,license='CC0' if code=='cc0' else 'CC BY (version pending verification)',license_url='https://creativecommons.org/publicdomain/zero/1.0/' if code=='cc0' else '',source=f'https://www.inaturalist.org/photos/{photo["id"]}',title=f'iNaturalist photo {photo["id"]}',description=obs.get('taxon',{}).get('name',taxon),modifications='Resized and converted to WebP',search_taxon=taxon,discovery='inaturalist',review_status='pending',observation_url=f'https://www.inaturalist.org/observations/{obs["id"]}')
+    except Exception as e: errors.append(f'{name}: iNaturalist: {e}')
 
 def run():
     manifest={}; missing=[]; errors=[]; alternatives={}
@@ -79,6 +99,19 @@ def run():
                     (OUT/path).parent.mkdir(parents=True,exist_ok=True);im.save(OUT/path,'WEBP',quality=82)
                     found.append(dict(meta,path=path,search_taxon=taxon,discovery=method,review_status='pending'))
                 except Exception as e: errors.append(f'{name}: {page["title"]}: {e}');continue
+        if len(found)<3:
+            for thumb,meta in inat_candidates(name,taxon,errors):
+                if len(found)>=3: break
+                if meta['source'] in seen: continue
+                seen.add(meta['source'])
+                try:
+                    r=s.get(thumb,timeout=45); r.raise_for_status()
+                    im=ImageOps.exif_transpose(Image.open(io.BytesIO(r.content))).convert('RGB'); im.thumbnail((800,800))
+                    if min(im.size)<250: continue
+                    path=f'assets/animals/{slug}.webp' if not found else f'alternatives/{slug}-{len(found)+1}.webp'
+                    (OUT/path).parent.mkdir(parents=True,exist_ok=True); im.save(OUT/path,'WEBP',quality=82)
+                    found.append(dict(meta,path=path))
+                except Exception as e: errors.append(f'{name}: iNaturalist download: {e}')
         if found: manifest[name]=found[0]; alternatives[name]=found[1:]
         else: missing.append(name)
         print(f'{name}: {len(found)} candidates',flush=True)
