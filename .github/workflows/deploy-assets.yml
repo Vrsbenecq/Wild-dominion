@@ -1,0 +1,38 @@
+name: Deploy Wild Dominion with asset fingerprints
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: wild-dominion-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Build asset manifest
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          paths = sorted(Path('assets/animals').glob('*.webp')) + [Path('IMAGE_CREDITS.json')]
+          manifest = {p.as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()[:20] for p in paths}
+          Path('asset-manifest.json').write_text(json.dumps(manifest, indent=2))
+          PY
+          mkdir -p /tmp/wd-site
+          cp -r index.html version.json asset-manifest.json IMAGE_CREDITS.json assets css js /tmp/wd-site/
+          for f in manifest.webmanifest game.js sw.js service-worker.js; do if [ -f "$f" ]; then cp "$f" /tmp/wd-site/; fi; done
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: /tmp/wd-site
+      - uses: actions/deploy-pages@v4
+        id: deployment
