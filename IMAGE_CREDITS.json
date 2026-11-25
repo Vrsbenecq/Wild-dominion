@@ -35,6 +35,36 @@
     "search_taxon": "Loxodonta africana",
     "review_status": "source_metadata_checked_in_prior_conversation"
   },
+  "African Lion": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/12610319/large.jpg",
+    "author": "(c) Luis G. Restrepo, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/12610319",
+    "title": "Panthera leo melanochaita",
+    "search_taxon": "Panthera leo",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/african-lion.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Alpine Ibex": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/18500507/large.jpeg",
+    "author": "no rights reserved",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://www.inaturalist.org/photos/18500507",
+    "title": "Capra ibex",
+    "search_taxon": "Capra ibex",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/alpine-ibex.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "American Alligator": {
     "author": "BFS Man  from Webster, TX, USA",
     "license": "CC BY 2.0",
@@ -84,6 +114,21 @@
     "discovery": "wikipedia",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Arctic Hare": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/109904646/large.jpeg",
+    "author": "(c) Ian Adams, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/109904646",
+    "title": "Lepus arcticus",
+    "search_taxon": "Lepus arcticus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/arctic-hare.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Arctic Tern": {
     "author": "Åsa Berndtsson",
     "license": "CC BY 2.0",
@@ -97,6 +142,21 @@
     "discovery": "commons",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Beaver": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/120665558/large.jpg",
+    "author": "no rights reserved",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://www.inaturalist.org/photos/120665558",
+    "title": "Castor fiber",
+    "search_taxon": "Castor",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/beaver.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Beluga Whale": {
     "author": "www.MetaphoricalPlatypus.com",
     "license": "CC BY 3.0",
@@ -109,6 +169,36 @@
     "search_taxon": "Delphinapterus leucas",
     "discovery": "commons",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Bengal Tiger": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/111317641/large.jpg",
+    "author": "(c) Morten Ross, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/111317641",
+    "title": "Panthera tigris tigris",
+    "search_taxon": "Panthera tigris tigris",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/bengal-tiger.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Bighorn Sheep": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/446849381/large.jpeg",
+    "author": "(c) John Krampl, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/446849381",
+    "title": "Ovis canadensis canadensis",
+    "search_taxon": "Ovis canadensis",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/bighorn-sheep.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "Black Rhinoceros": {
     "author": "Derek Keats  from Johannesburg, South Africa",
@@ -220,6 +310,21 @@
     "observation_url": "https://www.inaturalist.org/observations/102298841",
     "path": "assets/animals/deathstalker-scorpion.webp"
   },
+  "Desert Tortoise": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/66225947/large.jpg",
+    "author": "(c) Joey Santore, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/66225947",
+    "title": "Gopherus agassizii",
+    "search_taxon": "Gopherus agassizii",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/desert-tortoise.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Dromedary Camel": {
     "author": "no rights reserved",
     "license": "CC0",
@@ -259,6 +364,21 @@
     "discovery": "commons",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "European Badger": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/563248769/large.jpg",
+    "author": "(c) Diego González Dopico, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/563248769",
+    "title": "Meles meles",
+    "search_taxon": "Meles meles",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/european-badger.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Fennec Fox": {
     "author": "Kkonstan",
     "license": "CC BY 3.0",
@@ -270,6 +390,21 @@
     "path": "assets/animals/fennec-fox.webp",
     "search_taxon": "Vulpes zerda",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Flamingo": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/314355873/large.jpg",
+    "author": "(c) gwar, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/314355873",
+    "title": "Phoenicopterus ruber glyphorhynchus",
+    "search_taxon": "Phoenicopterus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/flamingo.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "Giant Pacific Octopus": {
     "author": "Karen  from Los Angeles, USA",
@@ -295,6 +430,21 @@
     "search_taxon": "Heloderma suspectum",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Giraffe": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/446427608/large.jpeg",
+    "author": "(c) Tia Offner, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/446427608",
+    "title": "Giraffa giraffa angolensis",
+    "search_taxon": "Giraffa",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/giraffe.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Golden Eagle": {
     "author": "Just Chaos (Jean)",
     "license": "CC BY 2.0",
@@ -318,6 +468,36 @@
     "path": "assets/animals/gray-wolf.webp",
     "search_taxon": "Canis lupus",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Great Barracuda": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/249214732/large.jpg",
+    "author": "(c) Pauline Walsh Jacobson, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/249214732",
+    "title": "Sphyraena barracuda",
+    "search_taxon": "Sphyraena barracuda",
+    "provider": "iNaturalist",
+    "score": 89,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/great-barracuda.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Great Blue Heron": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/134213386/large.jpg",
+    "author": "(c) mostbittern, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/134213386",
+    "title": "Ardea herodias",
+    "search_taxon": "Ardea herodias",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/great-blue-heron.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "Great Horned Owl": {
     "author": "Mary C. Kirby",
@@ -367,6 +547,21 @@
     "search_taxon": "Eunectes murinus",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Hammerhead Shark": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/353767251/large.jpg",
+    "author": "(c) Robin White, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/353767251",
+    "title": "Sphyrna mokarran",
+    "search_taxon": "Sphyrnidae",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/hammerhead-shark.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Harbor Seal": {
     "author": "Roger Myers",
     "license": "CC BY 3.0",
@@ -402,6 +597,51 @@
     "path": "assets/animals/himalayan-tahr.webp",
     "search_taxon": "Hemitragus jemlahicus",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Hippopotamus": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/57201706/large.jpg",
+    "author": "no rights reserved",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://www.inaturalist.org/photos/57201706",
+    "title": "Hippopotamus amphibius",
+    "search_taxon": "Hippopotamus amphibius",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/hippopotamus.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Honey Badger": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/448988252/large.jpeg",
+    "author": "(c) Tia Offner, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/448988252",
+    "title": "Mellivora capensis capensis",
+    "search_taxon": "Mellivora capensis",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/honey-badger.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Humpback Whale": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/2562747/large.jpg",
+    "author": "(c) Ken-ichi Ueda, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/2562747",
+    "title": "Megaptera novaeangliae",
+    "search_taxon": "Megaptera novaeangliae",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/humpback-whale.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "Jaguar": {
     "author": "Dick Culbert  from Gibsons, B.C., Canada",
@@ -502,6 +742,21 @@
     "search_taxon": "Oreamnos americanus",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Musk Ox": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/230366453/large.jpeg",
+    "author": "no rights reserved",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://www.inaturalist.org/photos/230366453",
+    "title": "Ovibos moschatus",
+    "search_taxon": "Ovibos moschatus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/musk-ox.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Nile Crocodile": {
     "author": "Dick Culbert  from Gibsons, B.C., Canada",
     "license": "CC BY 2.0",
@@ -551,6 +806,21 @@
     "discovery": "wikipedia",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Ostrich": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/55506762/large.jpg",
+    "author": "(c) Andrew Allen, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/55506762",
+    "title": "Struthio camelus",
+    "search_taxon": "Struthio camelus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/ostrich.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Peregrine Falcon": {
     "author": "slagheap  from Canada",
     "license": "CC BY 2.0",
@@ -562,6 +832,21 @@
     "path": "assets/animals/peregrine-falcon.webp",
     "search_taxon": "Falco peregrinus",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Pika": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/220696478/large.jpeg",
+    "author": "(c) Dmitry Boldyrev, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/220696478",
+    "title": "Ochotona rutila",
+    "search_taxon": "Ochotona",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/pika.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "Plains Zebra": {
     "author": "Equus_quagga_(xndr).jpg :  Svdmolen  \n derivative work:  Falk M.  (  talk  )",
@@ -639,6 +924,36 @@
     "discovery": "wikipedia",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Red Deer": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/455676146/large.jpg",
+    "author": "(c) Diego González Dopico, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/455676146",
+    "title": "Cervus elaphus",
+    "search_taxon": "Cervus elaphus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/red-deer.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Red Fox": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/289118318/large.jpg",
+    "author": "(c) David Willingham, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/289118318",
+    "title": "Vulpes vulpes necator",
+    "search_taxon": "Vulpes vulpes",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/red-fox.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Red Panda": {
     "author": "Prince Roy  from Washington, DC",
     "license": "CC BY 2.0",
@@ -651,6 +966,36 @@
     "search_taxon": "Ailurus fulgens",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Red Squirrel": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/208190246/large.jpeg",
+    "author": "(c) Evgenij Samarin, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/208190246",
+    "title": "Sciurus vulgaris altaicus",
+    "search_taxon": "Sciurus vulgaris",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/red-squirrel.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Reindeer": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/115691/large.jpg",
+    "author": "(c) Brian Gratwicke, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/115691",
+    "title": "Rangifer tarandus",
+    "search_taxon": "Rangifer tarandus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/reindeer.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Rhinoceros Beetle": {
     "author": "DataBase Center for Life Science (DBCLS)",
     "license": "CC BY 4.0",
@@ -662,6 +1007,21 @@
     "path": "assets/animals/rhinoceros-beetle.webp",
     "search_taxon": "Dynastinae",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Saltwater Crocodile": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/22073105/large.jpg",
+    "author": "no rights reserved",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://www.inaturalist.org/photos/22073105",
+    "title": "Crocodylus porosus",
+    "search_taxon": "Crocodylus porosus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/saltwater-crocodile.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "Sand Cat": {
     "author": "No machine-readable author provided.  Huanyun  assumed (based on copyright claims).",
@@ -711,6 +1071,51 @@
     "search_taxon": "Sagittarius serpentarius",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
   },
+  "Sidewinder": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/447782020/large.jpeg",
+    "author": "(c) Dan Riley, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/447782020",
+    "title": "Crotalus cerastes cercobombus",
+    "search_taxon": "Crotalus cerastes",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/sidewinder.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Sloth": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/60589749/large.jpg",
+    "author": "(c) Aitor, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/60589749",
+    "title": "Bradypus variegatus",
+    "search_taxon": "Bradypus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/sloth.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Snow Leopard": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/474774180/large.png",
+    "author": "(c) Biray Pinar, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/474774180",
+    "title": "Panthera uncia",
+    "search_taxon": "Panthera uncia",
+    "provider": "iNaturalist",
+    "score": 89,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/snow-leopard.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
   "Snowy Owl": {
     "author": "lwolfartist",
     "license": "CC BY 2.0",
@@ -758,6 +1163,51 @@
     "path": "assets/animals/thorny-devil.webp",
     "search_taxon": "Moloch horridus",
     "review_status": "candidate_metadata_and_thumbnail_review_only"
+  },
+  "Walrus": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/314800637/large.jpg",
+    "author": "(c) Morten Ross, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/314800637",
+    "title": "Odobenus rosmarus rosmarus",
+    "search_taxon": "Odobenus rosmarus",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/walrus.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Water Buffalo": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/163579411/large.jpg",
+    "author": "(c) Gergely Nigg, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/163579411",
+    "title": "Bubalus bubalis",
+    "search_taxon": "Bubalus bubalis",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/water-buffalo.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
+  },
+  "Western Gorilla": {
+    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/327975185/large.jpeg",
+    "author": "(c) Tony King, some rights reserved (CC BY)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.inaturalist.org/photos/327975185",
+    "title": "Gorilla gorilla gorilla",
+    "search_taxon": "Gorilla gorilla",
+    "provider": "iNaturalist",
+    "score": 90,
+    "modifications": "Resized and converted to WebP",
+    "status": "candidate; manual review required",
+    "path": "assets/animals/western-gorilla.webp",
+    "review_status": "thumbnail reviewed; imported licence metadata only"
   },
   "White Rhinoceros": {
     "author": "Derek Keats  from Johannesburg, South Africa",
