@@ -1,0 +1,19 @@
+'use strict';
+(()=>{
+const defaults={music:0,sound:60,animations:true,vibration:false,confirm:true,quality:'high'}, key='wd-settings-v1';
+let prefs={...defaults};try{const raw=JSON.parse(localStorage.getItem(key));for(const k of Object.keys(defaults)){if(raw&&typeof raw[k]===typeof defaults[k])prefs[k]=raw[k];}}catch{}
+for(const k of ['music','sound'])prefs[k]=Math.max(0,Math.min(100,Number.isFinite(prefs[k])?prefs[k]:defaults[k]));if(!['high','low'].includes(prefs.quality))prefs.quality='high';
+const dialog=document.getElementById('settings-dialog'), opener=document.getElementById('settings-open');let ctx,ambient,ambientGain;
+function audio(){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{ctx ||= new C();if(ctx.state==='suspended')ctx.resume().catch(()=>{});return ctx}catch{return null}}
+function music(){if(!ctx||!prefs.music||document.hidden){if(ambientGain)ambientGain.gain.setTargetAtTime(0,ctx.currentTime,.15);return}if(!ambient){ambientGain=ctx.createGain();ambientGain.gain.value=0;ambientGain.connect(ctx.destination);ambient=[110,164.81,220].map(f=>{const o=ctx.createOscillator();o.type='sine';o.frequency.value=f;o.connect(ambientGain);o.start();return o})}ambientGain.gain.setTargetAtTime(prefs.music/100*.025,ctx.currentTime,.2)}
+function beep(){if(!prefs.sound)return;const c=audio();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.frequency.value=440;g.gain.setValueAtTime(prefs.sound/100*.045,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.09);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.1)}
+function apply(){document.documentElement.classList.toggle('wd-no-animation',!prefs.animations);document.documentElement.classList.toggle('wd-lite-photos',prefs.quality==='low');for(const el of dialog.querySelectorAll('[data-pref]')){const k=el.dataset.pref;if(el.type==='checkbox')el.checked=prefs[k];else el.value=prefs[k];const out=document.getElementById(k+'-value');if(out)out.textContent=prefs[k]+'%'}music()}
+function persist(){try{localStorage.setItem(key,JSON.stringify(prefs))}catch{alert('Settings could not be saved on this device.')}apply()}
+opener.onclick=()=>{if(!dialog.open)dialog.showModal()};document.getElementById('settings-close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>opener.focus());
+dialog.addEventListener('input',e=>{const k=e.target.dataset.pref;if(!Object.hasOwn(defaults,k))return;prefs[k]=e.target.type==='checkbox'?e.target.checked:e.target.type==='range'?Number(e.target.value):e.target.value;if(k==='music'&&prefs.music)audio();persist()});
+document.getElementById('reset-prefs').onclick=()=>{if(confirm('Restore default preferences?')&&confirm('Confirm reset of settings only?')){prefs={...defaults};persist()}};
+const search=document.getElementById('credit-search'),list=document.getElementById('photo-credit-list');function filterCredits(){const q=search.value.trim().toLowerCase();for(const p of list.querySelectorAll('p'))p.hidden=!p.textContent.toLowerCase().includes(q)}search.addEventListener('input',filterCredits);new MutationObserver(filterCredits).observe(list,{childList:true});
+// Capture purchases before the existing inline handler, without altering game logic.
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(prefs.confirm&&/^buy\(\)/.test(b.getAttribute('onclick')||'')&&!confirm('Open this pack and spend coins?')){e.preventDefault();e.stopImmediatePropagation();return}if(prefs.music){audio();music()}beep();if(prefs.vibration&&navigator.vibrate)navigator.vibrate(18)},true);
+new MutationObserver(()=>{if(!document.getElementById('update-box').hidden&&dialog.open)dialog.close()}).observe(document.getElementById('update-box'),{attributes:true,attributeFilter:['hidden']});document.addEventListener('visibilitychange',music);apply();
+})();
