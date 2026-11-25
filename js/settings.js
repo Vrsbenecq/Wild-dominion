@@ -1,6 +1,6 @@
 'use strict';
 (()=>{
-const defaults={music:0,sound:60,animations:true,vibration:false,confirm:true,quality:'high'}, key='wd-settings-v1';
+const defaults={music:0,sound:60,animations:true,vibration:false,confirm:true,quality:'high',autoPhotos:true}, key='wd-settings-v1';
 let prefs={...defaults};try{const raw=JSON.parse(localStorage.getItem(key));for(const k of Object.keys(defaults)){if(raw&&typeof raw[k]===typeof defaults[k])prefs[k]=raw[k];}}catch{}
 for(const k of ['music','sound'])prefs[k]=Math.max(0,Math.min(100,Number.isFinite(prefs[k])?prefs[k]:defaults[k]));if(!['high','low'].includes(prefs.quality))prefs.quality='high';
 const dialog=document.getElementById('settings-dialog'), opener=document.getElementById('settings-open');let ctx,ambient,ambientGain;

@@ -402,7 +402,7 @@ const wildlifeFrames = {
   }
 };
 function frameWildlifePhoto(img){
- const slug=img.getAttribute('src')?.split('/').pop()?.replace(/\.webp$/,'');
+ const slug=img.getAttribute('src')?.split('?')[0].split('/').pop()?.replace(/\.webp$/,'');
  const f=wildlifeFrames[slug]; if(!f)return;
  img.style.objectFit=f.fit; img.style.objectPosition=f.position;
  const art=img.closest('.art'); if(!art)return;
