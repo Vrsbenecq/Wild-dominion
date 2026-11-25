@@ -17,12 +17,12 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "american-black-bear": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 15%"
   },
   "andean-condor": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 15%"
   },
   "arctic-fox": {
     "fit": "cover",
@@ -49,20 +49,20 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "caracal": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 12%"
   },
   "cheetah": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 15%"
   },
   "chimpanzee": {
     "fit": "cover",
     "position": "50% 50%"
   },
   "clouded-leopard": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 20%"
   },
   "deathstalker-scorpion": {
     "fit": "cover",
@@ -73,8 +73,8 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "emperor-penguin": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 65%"
   },
   "eurasian-lynx": {
     "fit": "cover",
@@ -101,8 +101,8 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "great-horned-owl": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 20%"
   },
   "great-white-shark": {
     "fit": "cover",
@@ -117,8 +117,8 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "himalayan-tahr": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 35%"
   },
   "jaguar": {
     "fit": "cover",
@@ -157,16 +157,16 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "orangutan": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 8%"
   },
   "orca": {
     "fit": "cover",
     "position": "50% 50%"
   },
   "peregrine-falcon": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 15%"
   },
   "plains-zebra": {
     "fit": "cover",
@@ -185,8 +185,8 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "raccoon": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 15%"
   },
   "red-panda": {
     "fit": "cover",
@@ -221,15 +221,15 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "thorny-devil": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   },
   "white-rhinoceros": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 15%"
   },
   "wild-boar": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   },
   "nile-crocodile": {
@@ -245,7 +245,7 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "green-anaconda": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   },
   "bottlenose-dolphin": {
@@ -257,12 +257,12 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "african-lion": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   },
   "giraffe": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 10%"
   },
   "ostrich": {
     "fit": "cover",
@@ -273,8 +273,8 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "red-fox": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 20%"
   },
   "red-deer": {
     "fit": "cover",
@@ -285,8 +285,8 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "red-squirrel": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 20%"
   },
   "bengal-tiger": {
     "fit": "cover",
@@ -341,12 +341,12 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "alpine-ibex": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 35%"
   },
   "bighorn-sheep": {
-    "fit": "contain",
-    "position": "50% 50%"
+    "fit": "cover",
+    "position": "50% 25%"
   },
   "pika": {
     "fit": "cover",
@@ -373,7 +373,7 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "water-buffalo": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   },
   "moose": {
@@ -393,11 +393,11 @@ const wildlifeFrames = {
     "position": "50% 50%"
   },
   "swordfish": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   },
   "narwhal": {
-    "fit": "contain",
+    "fit": "cover",
     "position": "50% 50%"
   }
 };
@@ -406,8 +406,8 @@ function frameWildlifePhoto(img){
  const f=wildlifeFrames[slug]; if(!f)return;
  img.style.objectFit=f.fit; img.style.objectPosition=f.position;
  const art=img.closest('.art'); if(!art)return;
- art.classList.toggle('photo-contained',f.fit==='contain');
- if(f.fit==='contain')art.style.setProperty('--photo-backdrop',`url("${img.getAttribute('src')}")`); else art.style.removeProperty('--photo-backdrop');
+ art.classList.remove('photo-contained');
+ art.style.removeProperty('--photo-backdrop');
  img.tabIndex=0; img.setAttribute('role','button'); img.setAttribute('aria-label','View full photograph of '+slug.replaceAll('-',' '));
 }
 function scanWildlifePhotos(root){if(root.nodeType!==1&&root.nodeType!==9)return;if(root.matches?.('img.animal-photo'))frameWildlifePhoto(root);root.querySelectorAll?.('img.animal-photo').forEach(frameWildlifePhoto);}
