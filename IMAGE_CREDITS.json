@@ -36,19 +36,16 @@
     "review_status": "source_metadata_checked_in_prior_conversation"
   },
   "African Lion": {
-    "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/12610319/large.jpg",
-    "author": "(c) Luis G. Restrepo, some rights reserved (CC BY)",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "source": "https://www.inaturalist.org/photos/12610319",
-    "title": "Panthera leo melanochaita",
+    "author": "Rennett Stowe",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Male_African_Lion_(4229657813).jpg",
+    "title": "Male African Lion (4229657813).jpg",
+    "description": "Adult male lion in captivity",
     "search_taxon": "Panthera leo",
-    "provider": "iNaturalist",
-    "score": 90,
-    "modifications": "Resized and converted to WebP",
-    "status": "candidate; manual review required",
+    "modifications": "Resized and converted to WebP; display may crop photograph",
     "path": "assets/animals/african-lion.webp",
-    "review_status": "thumbnail reviewed; imported licence metadata only"
+    "review_status": "Wikimedia licence metadata and original SHA-1 verified; visually reviewed"
   },
   "Alpine Ibex": {
     "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/18500507/large.jpeg",
