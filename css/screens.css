@@ -1,0 +1,23 @@
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.toolbar input{flex:1;min-width:120px}
+.gold{background:#d5b369;color:#142018;border:0;font-weight:bold}
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero{padding:24px;background:linear-gradient(135deg,#284e35,#14251c);border-radius:15px}
+.hero h2{font-size:28px;margin:0 0 8px}
+.notice{color:#e8c477}
+h2{margin-top:8px}
+button{touch-action:manipulation}
+
+
+/* Save interface */
+.save-panel{padding:20px;background:#18271e;border:1px solid #405b48;border-radius:18px;min-width:0}
+.save-panel h3{font-size:21px;margin:0 0 14px}
+.save-panel p{color:#aab9ae;line-height:1.55;margin:0 0 18px}
+.save-actions{display:grid;gap:12px;min-width:0}
+.save-actions button{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:52px;padding:12px;border-radius:10px;background:#18271e;color:#eef3ed;font-size:16px;border:1px solid #405b48}
+.save-actions button.gold,.save-actions button.gold:hover,.save-actions button.gold:focus{background:#d5b369;color:#142018;border-color:#d5b369;font-weight:700}
+.save-actions svg{width:20px;height:20px;flex:none}
+.save-actions input[hidden]{display:none!important}
+#save-status[data-status=ok]{color:#81c99b!important}
+#save-status[data-status=ok]::before{content:'✓ ';}
+#save-status[data-status=warning]{color:#e8c477!important}

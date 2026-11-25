@@ -1,0 +1,8 @@
+.card{border:2px solid var(--rarity);border-radius:12px;overflow:hidden;background:#17271e;padding:10px;min-width:0}
+.art{font-size:55px;text-align:center;background:radial-gradient(ellipse,#3c5841,#14231b);border-radius:8px;padding:12px 0}
+.rarity{color:var(--rarity);font-size:11px;letter-spacing:1px}
+.card h3{font-size:15px;margin:6px 0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:12px}
+.stats b{color:#e8c477}
+.card button{width:100%;margin-top:8px;font-size:12px}
+.panel{background:#14251c;border:1px solid #38503e;border-radius:12px;padding:16px;margin:12px 0}
