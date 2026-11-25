@@ -5,12 +5,12 @@ from urllib3.util.retry import Retry
 from PIL import Image, ImageOps
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'review'; OUT.mkdir(exist_ok=True)
-s=requests.Session(); s.headers['User-Agent']='WildDominionPhotoReview/1.3.3 (https://github.com/Vrsbenecq/Wild-dominion)'
+s=requests.Session(); s.headers['User-Agent']='WildDominionPhotoReview/1.1 (https://github.com/Vrsbenecq/Wild-dominion)'
 s.mount('https://',HTTPAdapter(max_retries=Retry(total=3,backoff_factor=2,status_forcelist=[429,500,502,503,504],respect_retry_after_header=True)))
 API='https://commons.wikimedia.org/w/api.php'
 def clean(v): return html.unescape(re.sub('<[^>]+>',' ',v)).strip()
-def get(api=API, **params):
-    r=s.get(api,params={'format':'json','formatversion':2,**params},timeout=40);r.raise_for_status(); time.sleep(.4); d=r.json()
+def get(**params):
+    r=s.get(API,params={'format':'json','formatversion':2,**params},timeout=40);r.raise_for_status(); time.sleep(.4); d=r.json()
     if 'error' in d: raise RuntimeError(d['error'])
     return d.get('query',{}).get('pages',[])
 names=[n for group in re.findall(r"\['[^']+','[^']+','([^']+)'\]",(ROOT/'js/animals.js').read_text()) for n in group.split(',')]
@@ -18,7 +18,7 @@ assert len(names)==100 and len(set(names))==100
 # Broad game labels use representative taxa, not a claim that the label denotes one species.
 taxa='Panthera leo|Acinonyx jubatus|Loxodonta africana|Giraffa|Crocuta crocuta|Ceratotherium simum|Diceros bicornis|Equus quagga|Suricata suricatta|Syncerus caffer|Sagittarius serpentarius|Struthio camelus|Mellivora capensis|Canis lupus|Ursus arctos|Vulpes vulpes|Lynx lynx|Cervus elaphus|Sus scrofa|Meles meles|Alces alces|Procyon lotor|Bubo virginianus|Sciurus vulgaris|Ursus americanus|Panthera tigris tigris|Panthera onca|Gorilla gorilla|Pongo|Pan troglodytes|Bradypus|Okapia johnstoni|Tapirus|Harpia harpyja|Eunectes murinus|Dendrobatidae|Ramphastidae|Neofelis nebulosa|Orcinus orca|Carcharodon carcharias|Balaenoptera musculus|Megaptera novaeangliae|Tursiops truncatus|Enteroctopus dofleini|Mobula birostris|Chelonia mydas|Sphyrnidae|Xiphias gladius|Sphyraena barracuda|Enhydra lutris|Odobenus rosmarus|Ursus maritimus|Vulpes lagopus|Lepus arcticus|Ovibos moschatus|Rangifer tarandus|Bubo scandiacus|Monodon monoceros|Delphinapterus leucas|Phoca vitulina|Aptenodytes forsteri|Hydrurga leptonyx|Sterna paradisaea|Camelus dromedarius|Vulpes zerda|Leiurus quinquestriatus|Crotalus cerastes|Gopherus agassizii|Heloderma suspectum|Addax nasomaculatus|Caracal caracal|Felis margarita|Jaculus|Geococcyx californianus|Moloch horridus|Panthera uncia|Aquila chrysaetos|Capra ibex|Oreamnos americanus|Ovis canadensis|Ochotona|Vultur gryphus|Puma concolor|Ailurus fulgens|Hemitragus jemlahicus|Chinchilla|Falco peregrinus|Crocodylus porosus|Crocodylus niloticus|Hippopotamus amphibius|Alligator mississippiensis|Hydrochoerus hydrochaeris|Castor|Ornithorhynchus anatinus|Phoenicopterus|Ardea herodias|Bubalus bubalis|Varanus komodoensis|Ophiophagus hannah|Dynastinae'.split('|')
 assert len(taxa)==len(names)
-BLOCK=re.compile(r'\b(illustration|drawing|diagram|cartoon|graphic|map|skull|skeleton|blubber|taxidermy|specimen|montage|collage|logo|stamp|fossil|dissection|painting|distribution map|knitting|pattern|karyotype|chromosome|molar|tooth|fighter aircraft|sternite|cross section|hybrid|tea cosy|street scene)\b',re.I)
+BLOCK=re.compile(r'\b(illustration|drawing|diagram|cartoon|graphic|map|skull|skeleton|blubber|taxidermy|specimen|montage|collage|logo|stamp|fossil|dissection|painting|distribution map)\b',re.I)
 props=dict(prop='imageinfo',iiprop='url|extmetadata|mime|size',iiurlwidth=800)
 def candidate(page):
     info=page.get('imageinfo',[{}])[0]; m=info.get('extmetadata',{}); val=lambda k:clean(m.get(k,{}).get('value',''))
@@ -30,94 +30,35 @@ def candidate(page):
     thumb=info.get('thumburl') or info.get('url','')
     if not thumb.startswith('https://upload.wikimedia.org/'): return
     return thumb,dict(author=author,license=lic,license_url=url,source=source,title=page['title'],description=desc,modifications='Resized and converted to WebP')
-TARGETS = ['African Lion', 'Alpine Ibex', 'Arctic Hare', 'Beaver', 'Chinchilla', 'Deathstalker Scorpion', 'Desert Tortoise', 'Dromedary Camel', 'Great Barracuda', 'Great Blue Heron', 'Hammerhead Shark', 'Humpback Whale', 'King Cobra', 'Narwhal', 'Polar Bear', 'Red Fox', 'Red Squirrel', 'Saltwater Crocodile', 'Toucan', 'Walrus', 'Water Buffalo', 'Western Gorilla']
-WIKI='https://en.wikipedia.org/w/api.php'
-ALIASES={'African Lion':'Lion','Western Gorilla':'Western gorilla','Honey Badger':'Honey badger','Puma':'Cougar','Sidewinder':'Crotalus cerastes','Deathstalker Scorpion':'Deathstalker','Hammerhead Shark':'Hammerhead shark','Toucan':'Toucan','Sloth':'Three-toed sloth','Sea Turtle':'Green sea turtle','Beaver':'Eurasian beaver','Rhinoceros Beetle':'Dynastinae','Water Buffalo':'Water buffalo','Flamingo':'Flamingo'}
-def wiki_titles(name,taxon):
-    for title in dict.fromkeys([ALIASES.get(name,name),taxon]):
-        pages=get(WIKI,action='query',titles=title,redirects=1,prop='pageimages|images',piprop='name',pilicense='free',imlimit=50)
-        for page in pages:
-            if page.get('pageimage'): yield 'File:'+page['pageimage']
-            for item in page.get('images',[]):
-                t=item['title']; norm=t.replace('_',' ').lower()
-                if t.lower().endswith(('.jpg','.jpeg','.png')) and not BLOCK.search(norm) and any(x.lower() in norm for x in [name,taxon,ALIASES.get(name,name)]): yield t
-
-def queries(name,taxon,errors):
-    try:
-        titles=list(dict.fromkeys(wiki_titles(name,taxon)))[:12]
-        for i in range(0,len(titles),5):
-            yield dict(titles='|'.join(titles[i:i+5])), 'wikipedia'
-    except Exception as e: errors.append(f'{name}: Wikipedia: {e}')
-    for q in [dict(generator='search',gsrsearch='intitle:"'+taxon+'" filetype:bitmap',gsrnamespace=6,gsrlimit=30),dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=30),dict(generator='search',gsrsearch='intitle:"'+name+'" filetype:bitmap',gsrnamespace=6,gsrlimit=30)]: yield q,'commons'
-
-def inat_json(endpoint, **params):
-    r=s.get('https://api.inaturalist.org/v1/'+endpoint,params=params,timeout=40)
-    r.raise_for_status(); time.sleep(1); return r.json().get('results',[])
-
-def inat_candidates(name,taxon,errors):
-    try:
-        taxa_results=inat_json('taxa',q=taxon,per_page=20)
-        match=next((t for t in taxa_results if t.get('name','').casefold()==taxon.casefold() and t.get('is_active',True)),None)
-        if not match: return
-        observations=inat_json('observations',taxon_id=match['id'],quality_grade='research',photo_license='cc0,cc-by',per_page=50,order_by='votes',order='desc')
-        for obs in observations:
-            for photo in obs.get('photos',[]):
-                code=photo.get('license_code'); author=photo.get('attribution','').strip(); url=photo.get('url') or ''
-                if code not in ('cc0','cc-by') or not author or not photo.get('id'): continue
-                if not url.startswith(('https://inaturalist-open-data.s3.amazonaws.com/','https://static.inaturalist.org/','https://www.inaturalist.org/')): continue
-                url=re.sub(r'/square(?=\.)','/medium',url)
-                # iNaturalist photo-level license codes do not specify version; verify original page before approval.
-                yield url,dict(author=author,license='CC0' if code=='cc0' else 'CC BY (version pending verification)',license_url='https://creativecommons.org/publicdomain/zero/1.0/' if code=='cc0' else '',source=f'https://www.inaturalist.org/photos/{photo["id"]}',title=f'iNaturalist photo {photo["id"]}',description=obs.get('taxon',{}).get('name',taxon),modifications='Resized and converted to WebP',search_taxon=taxon,discovery='inaturalist',review_status='pending',observation_url=f'https://www.inaturalist.org/observations/{obs["id"]}')
-    except Exception as e: errors.append(f'{name}: iNaturalist: {e}')
+TARGET = {'Bighorn Sheep', 'Bengal Tiger', 'Flamingo', 'Swordfish', 'European Badger', 'Sloth', 'Humpback Whale', 'Sidewinder', 'Red Squirrel', 'Reindeer', 'Great Blue Heron', 'Pika', 'Great Barracuda', 'Snow Leopard', 'Western Gorilla', 'Alpine Ibex', 'African Lion', 'Arctic Hare', 'Red Deer', 'Walrus', 'Giraffe', 'Moose', 'Beaver', 'Saltwater Crocodile', 'Narwhal', 'Hippopotamus', 'Blue Whale', 'Red Fox', 'Desert Tortoise', 'Ostrich', 'Toucan', 'Hammerhead Shark', 'Honey Badger', 'Water Buffalo', 'Musk Ox', 'Chinchilla'}
 
 def run():
     manifest={}; missing=[]; errors=[]; alternatives={}
-    assert set(TARGETS)<=set(names)
     for name,taxon in zip(names,taxa):
-        if name not in TARGETS: continue
+        if name not in TARGET: continue
         slug=re.sub('[^a-z0-9]+','-',name.lower()).strip('-'); found=[]; seen=set()
-        for query,method in queries(name,taxon,errors):
-            if len(found)>=3: break
+        for query in [dict(generator='categorymembers',gcmtitle='Category:'+taxon,gcmtype='file',gcmlimit=50),dict(generator='search',gsrsearch=taxon+' filetype:bitmap',gsrnamespace=6,gsrlimit=50),dict(generator='search',gsrsearch=name+' filetype:bitmap',gsrnamespace=6,gsrlimit=50),dict(generator='search',gsrsearch=taxon+' wildlife photograph filetype:bitmap',gsrnamespace=6,gsrlimit=50)]:
+            if len(found)>=5: break
             try: pages=get(action='query',**query,**props)
-            except Exception as e: errors.append(f'{name}: search: {e}'); continue
-            if method=='wikipedia':
-                order={t.replace('_',' ').casefold():i for i,t in enumerate(query['titles'].split('|'))}
-                pages.sort(key=lambda p:order.get(p['title'].replace('_',' ').casefold(),999))
-            for page in pages:
-                if len(found)>=3: break
+            except Exception as e: errors.append(f'{name}: search: {e}');continue
+            for page in sorted(pages,key=lambda p:(not p['title'].lower().endswith(('.jpg','.jpeg')),p.get('index',999))):
+                if len(found)>=5: break
                 if page['title'] in seen: continue
                 seen.add(page['title']); c=candidate(page)
                 if not c: continue
                 thumb,meta=c
-                if method!='wikipedia':
-                    evidence=(meta['title']+' '+meta['description']).replace('_',' ').casefold()
-                    if not any(x.casefold() in evidence for x in (name,taxon,ALIASES.get(name,name))): continue
                 try:
                     r=s.get(thumb,timeout=45);r.raise_for_status(); im=ImageOps.exif_transpose(Image.open(io.BytesIO(r.content))).convert('RGB');im.thumbnail((800,800))
                     if min(im.size)<250: continue
                     path=f'assets/animals/{slug}.webp' if not found else f'alternatives/{slug}-{len(found)+1}.webp'
                     (OUT/path).parent.mkdir(parents=True,exist_ok=True);im.save(OUT/path,'WEBP',quality=82)
-                    found.append(dict(meta,path=path,search_taxon=taxon,discovery=method,review_status='pending'))
+                    found.append(dict(meta,path=path,search_taxon=taxon))
                 except Exception as e: errors.append(f'{name}: {page["title"]}: {e}');continue
-        if len(found)<3:
-            for thumb,meta in inat_candidates(name,taxon,errors):
-                if len(found)>=3: break
-                if meta['source'] in seen: continue
-                seen.add(meta['source'])
-                try:
-                    r=s.get(thumb,timeout=45); r.raise_for_status()
-                    im=ImageOps.exif_transpose(Image.open(io.BytesIO(r.content))).convert('RGB'); im.thumbnail((800,800))
-                    if min(im.size)<250: continue
-                    path=f'assets/animals/{slug}.webp' if not found else f'alternatives/{slug}-{len(found)+1}.webp'
-                    (OUT/path).parent.mkdir(parents=True,exist_ok=True); im.save(OUT/path,'WEBP',quality=82)
-                    found.append(dict(meta,path=path))
-                except Exception as e: errors.append(f'{name}: iNaturalist download: {e}')
-        if found: manifest[name]=found[0]; alternatives[name]=found[1:]
+        if found: manifest[name]=found[0];alternatives[name]=found[1:]
         else: missing.append(name)
         print(f'{name}: {len(found)} candidates',flush=True)
         for filename,data in [('IMAGE_CREDITS.json',manifest),('ALTERNATIVES.json',alternatives)]: (OUT/filename).write_text(json.dumps(data,ensure_ascii=False,indent=2))
         (OUT/'MISSING.txt').write_text('\n'.join(missing));(OUT/'ERRORS.txt').write_text('\n'.join(errors))
-    (OUT/'REVIEW.txt').write_text('Targeted candidates only. Keep prior ZIPs; do not overwrite approved artwork. Verify species, photo, source and attribution manually. No automatic publication.\n')
-    (OUT/'TARGETS.txt').write_text('\n'.join(TARGETS))
-    print(f'{len(manifest)} of {len(TARGETS)} targeted species with candidates; {len(missing)} missing')
+    (OUT/'REVIEW.txt').write_text('Candidates only. Verify original source, rights, species, quality and attribution before publishing. Alternatives are not automatically selected. Previous run remains separate.\n')
+    print(f'{len(manifest)} species with candidates; {len(missing)} missing')
 if __name__=='__main__': run()
