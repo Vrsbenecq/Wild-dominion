@@ -1,3 +1,4 @@
+from pathlib import Path
 import json, re, pathlib, time, html, io, zipfile
 import requests
 from requests.adapters import HTTPAdapter
@@ -13,16 +14,9 @@ def get(**params):
     r=s.get(API,params={'format':'json','formatversion':2,**params},timeout=40);r.raise_for_status(); time.sleep(.4); d=r.json()
     if 'error' in d: raise RuntimeError(d['error'])
     return d.get('query',{}).get('pages',[])
-names=[n for group in re.findall(r"\['[^']+','[^']+','([^']+)'\]",(ROOT/'js/animals.js').read_text()) for n in group.split(',')]
-assert len(names)==100 and len(set(names))==100
-# Broad game labels use representative taxa, not a claim that the label denotes one species.
-taxa='Panthera leo|Acinonyx jubatus|Loxodonta africana|Giraffa|Crocuta crocuta|Ceratotherium simum|Diceros bicornis|Equus quagga|Suricata suricatta|Syncerus caffer|Sagittarius serpentarius|Struthio camelus|Mellivora capensis|Canis lupus|Ursus arctos|Vulpes vulpes|Lynx lynx|Cervus elaphus|Sus scrofa|Meles meles|Alces alces|Procyon lotor|Bubo virginianus|Sciurus vulgaris|Ursus americanus|Panthera tigris tigris|Panthera onca|Gorilla gorilla|Pongo|Pan troglodytes|Bradypus|Okapia johnstoni|Tapirus|Harpia harpyja|Eunectes murinus|Dendrobatidae|Ramphastidae|Neofelis nebulosa|Orcinus orca|Carcharodon carcharias|Balaenoptera musculus|Megaptera novaeangliae|Tursiops truncatus|Enteroctopus dofleini|Mobula birostris|Chelonia mydas|Sphyrnidae|Xiphias gladius|Sphyraena barracuda|Enhydra lutris|Odobenus rosmarus|Ursus maritimus|Vulpes lagopus|Lepus arcticus|Ovibos moschatus|Rangifer tarandus|Bubo scandiacus|Monodon monoceros|Delphinapterus leucas|Phoca vitulina|Aptenodytes forsteri|Hydrurga leptonyx|Sterna paradisaea|Camelus dromedarius|Vulpes zerda|Leiurus quinquestriatus|Crotalus cerastes|Gopherus agassizii|Heloderma suspectum|Addax nasomaculatus|Caracal caracal|Felis margarita|Jaculus|Geococcyx californianus|Moloch horridus|Panthera uncia|Aquila chrysaetos|Capra ibex|Oreamnos americanus|Ovis canadensis|Ochotona|Vultur gryphus|Puma concolor|Ailurus fulgens|Hemitragus jemlahicus|Chinchilla|Falco peregrinus|Crocodylus porosus|Crocodylus niloticus|Hippopotamus amphibius|Alligator mississippiensis|Hydrochoerus hydrochaeris|Castor|Ornithorhynchus anatinus|Phoenicopterus|Ardea herodias|Bubalus bubalis|Varanus komodoensis|Ophiophagus hannah|Dynastinae'.split('|')
-assert len(taxa)==len(names)
-TARGET = {'Bighorn Sheep', 'Bengal Tiger', 'Flamingo', 'Swordfish', 'European Badger', 'Sloth', 'Humpback Whale', 'Sidewinder', 'Red Squirrel', 'Reindeer', 'Great Blue Heron', 'Pika', 'Great Barracuda', 'Snow Leopard', 'Western Gorilla', 'Alpine Ibex', 'African Lion', 'Arctic Hare', 'Red Deer', 'Walrus', 'Giraffe', 'Moose', 'Beaver', 'Saltwater Crocodile', 'Narwhal', 'Hippopotamus', 'Blue Whale', 'Red Fox', 'Desert Tortoise', 'Ostrich', 'Toucan', 'Hammerhead Shark', 'Honey Badger', 'Water Buffalo', 'Musk Ox', 'Chinchilla'}
-
 import hashlib, argparse
 from PIL import ImageDraw
-BLOCK=re.compile(r'\b(illustration|drawing|diagram|cartoon|map|skull|skeleton|taxidermy|specimen|montage|collage|logo|stamp|fossil|painting|knitting|crochet|toy|sculpture)\b',re.I)
+BLOCK=re.compile(r'\b(illustration|drawing|diagram|cartoon|map|skull|skeleton|taxidermy|specimen|montage|collage|logo|stamp|fossil|painting|antlers?|footprints?|tracks|droppings|feathers?|nest|watermark|knitting|crochet|toy|sculpture)\b',re.I)
 errors=[]
 def api(url,**params):
     r=s.get(url,params=params,timeout=25); r.raise_for_status(); time.sleep(.6); return r.json()
@@ -40,11 +34,12 @@ def inat(taxon):
     ts=api(endpoint+'taxa',q=taxon,per_page=30).get('results',[])
     t=next((x for x in ts if x.get('name','').casefold()==taxon.casefold() and x.get('is_active',True)),None)
     if not t: return
-    for grade in ('research','needs_id'):
+    for grade in ('research',):
         obs=api(endpoint+'observations',taxon_id=t['id'],quality_grade=grade,photos='true',photo_license='cc0,cc-by',per_page=50,order_by='votes').get('results',[])
         for o in obs:
             ot=o.get('taxon') or {}; ids=ot.get('ancestor_ids',[])
             if ot.get('id')!=t['id'] and t['id'] not in ids: continue
+            if BLOCK.search(str(o.get('description') or '')): continue
             for p in o.get('photos',[]):
                 code=p.get('license_code'); lic={'cc0':'CC0','cc-by':'CC BY 4.0'}.get(code)
                 # iNaturalist CC BY is normally 4.0; verify exact version on photo page before publishing.
@@ -68,40 +63,71 @@ def gbif(taxon):
     if t.get('matchType')!='EXACT' or t.get('canonicalName','').casefold()!=taxon.casefold(): return
     for o in api(root+'occurrence/search',taxonKey=t['usageKey'],mediaType='StillImage',limit=60).get('results',[]):
         for p in o.get('media',[]):
-            if p.get('type')!='StillImage': continue
+            if p.get('type')!='StillImage' or BLOCK.search(str(p.get('title',''))+' '+str(p.get('description',''))): continue
+            if o.get('basisOfRecord') not in ('HUMAN_OBSERVATION','OBSERVATION','MACHINE_OBSERVATION'): continue
             c=make(p.get('identifier',''),p.get('creator') or p.get('rightsHolder'),p.get('license'),p.get('references') or f'https://www.gbif.org/occurrence/{o["key"]}',o.get('scientificName',''),taxon,'GBIF',60)
             if c: yield c
 
+
+taxa='Panthera leo|Acinonyx jubatus|Loxodonta africana|Giraffa|Crocuta crocuta|Ceratotherium simum|Diceros bicornis|Equus quagga|Suricata suricatta|Syncerus caffer|Sagittarius serpentarius|Struthio camelus|Mellivora capensis|Canis lupus|Ursus arctos|Vulpes vulpes|Lynx lynx|Cervus elaphus|Sus scrofa|Meles meles|Alces alces|Procyon lotor|Bubo virginianus|Sciurus vulgaris|Ursus americanus|Panthera tigris tigris|Panthera onca|Gorilla gorilla|Pongo|Pan troglodytes|Bradypus|Okapia johnstoni|Tapirus|Harpia harpyja|Eunectes murinus|Dendrobatidae|Ramphastidae|Neofelis nebulosa|Orcinus orca|Carcharodon carcharias|Balaenoptera musculus|Megaptera novaeangliae|Tursiops truncatus|Enteroctopus dofleini|Mobula birostris|Chelonia mydas|Sphyrnidae|Xiphias gladius|Sphyraena barracuda|Enhydra lutris|Odobenus rosmarus|Ursus maritimus|Vulpes lagopus|Lepus arcticus|Ovibos moschatus|Rangifer tarandus|Bubo scandiacus|Monodon monoceros|Delphinapterus leucas|Phoca vitulina|Aptenodytes forsteri|Hydrurga leptonyx|Sterna paradisaea|Camelus dromedarius|Vulpes zerda|Leiurus quinquestriatus|Crotalus cerastes|Gopherus agassizii|Heloderma suspectum|Addax nasomaculatus|Caracal caracal|Felis margarita|Jaculus|Geococcyx californianus|Moloch horridus|Panthera uncia|Aquila chrysaetos|Capra ibex|Oreamnos americanus|Ovis canadensis|Ochotona|Vultur gryphus|Puma concolor|Ailurus fulgens|Hemitragus jemlahicus|Chinchilla|Falco peregrinus|Crocodylus porosus|Crocodylus niloticus|Hippopotamus amphibius|Alligator mississippiensis|Hydrochoerus hydrochaeris|Castor|Ornithorhynchus anatinus|Phoenicopterus|Ardea herodias|Bubalus bubalis|Varanus komodoensis|Ophiophagus hannah|Dynastinae'.split('|')
+
+
+import os, statistics
+from PIL import ImageFilter, ImageStat
+TARGET={'Moose','Toucan','Blue Whale','Swordfish','Narwhal','Chinchilla'}
+def slug(n): return re.sub('[^a-z0-9]+','-',n.lower()).strip('-')
+def atomic(path,obj):
+    tmp=path.with_suffix('.tmp'); tmp.write_text(json.dumps(obj,ensure_ascii=False,indent=2)); tmp.replace(path)
+def phash(im):
+    a=list(im.convert('L').resize((9,8)).getdata()); return sum((a[y*9+x]>a[y*9+x+1])<< (y*8+x) for y in range(8) for x in range(8))
+def catalog():
+    f=ROOT/'tools/animal_catalog.json'
+    if f.exists(): return json.loads(f.read_text())
+    names=[n for group in re.findall(r"\['[^']+','[^']+','([^']+)'\]",(ROOT/'js/animals.js').read_text()) for n in group.split(',')]
+    if len(names)!=len(taxa): raise ValueError('Expanded game requires tools/animal_catalog.json with name and taxon for every card')
+    return [dict(name=n,taxon=t) for n,t in zip(names,taxa)]
+def dashboard(records):
+    data=json.dumps(records,ensure_ascii=False).replace('<','\\u003c')
+    page="""<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'><title>Wild Dominion review</title><style>body{background:#14291f;color:#eee;font:16px system-ui;margin:20px}a{color:#e4c77c}article{border-bottom:1px solid #647b68;padding:16px 0}.grid{display:flex;flex-wrap:wrap;gap:12px}.tile{width:220px}img{width:100%;height:150px;object-fit:contain}button,input{padding:10px;margin:5px}</style><h1>Wild Dominion photo review</h1><p>Check actual species and original photo licence before approving. Scores are metadata and image-quality heuristics only.</p><input id=q placeholder='Search animals'><button id=export>Export decisions JSON</button><main id=m></main><script>const data=DATA;let decisions={};try{decisions=JSON.parse(localStorage.getItem('wd-review')||'{}')}catch(e){};const m=document.querySelector('#m');function el(t,txt,parent){let e=document.createElement(t);e.textContent=txt;parent.append(e);return e}function render(){m.replaceChildren();for(const [name,cs] of Object.entries(data)){if(!name.toLowerCase().includes(q.value.toLowerCase()))continue;let a=el('article','',m);el('h2',name,a);let g=el('div','',a);g.className='grid';for(const c of cs){let t=el('div','',g);t.className='tile';let im=el('img','',t);im.src=c.path;im.loading='lazy';el('p',c.title+' | '+c.score+' | '+c.author+' | '+c.license,t);for(const [label,url] of [['Source',c.source],['Licence',c.license_url]]){let l=el('a',label+' ',t);if(/^https:\/\//.test(url))l.href=url;l.target='_blank';l.rel='noopener'}let b=el('button',decisions[name]===c.path?'Selected':'Approve',t);b.onclick=()=>{if(confirm('I checked the species, original licence and attribution')){decisions[name]=c.path;save();render()}}}let b=el('button','Reject / clear',a);b.onclick=()=>{delete decisions[name];save();render()}}}function save(){try{localStorage.setItem('wd-review',JSON.stringify(decisions))}catch(e){}}q.oninput=render;document.querySelector('#export').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(decisions,null,2)],{type:'application/json'}));a.download='decisions.json';a.click()};render()</script>"""
+    (OUT/'review.html').write_text(page.replace('DATA',data,1))
 def run():
-    parser=argparse.ArgumentParser();parser.add_argument('--all',action='store_true');args=parser.parse_args()
-    manifest={}; alternatives={}; missing=[]; seen=set(); tiles=[]
-    for name,taxon in zip(names,taxa):
-        if not args.all and name not in TARGET: continue
-        slug=re.sub('[^a-z0-9]+','-',name.lower()).strip('-'); pool=[]
+    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);args=ap.parse_args()
+    db=OUT/'database.json'; records=json.loads(db.read_text()) if db.exists() else {}; rows=catalog(); errors=[]; hashes=[int(c['dhash'],16) for cs in records.values() for c in cs if 'dhash' in c]
+    if args.decisions:
+        decisions=json.loads(args.decisions.read_text()); import shutil
+        dest=ROOT/'approved'; dest.mkdir(exist_ok=True); credits={}
+        for n,path in decisions.items():
+            c=next(c for c in records[n] if c['path']==path); target='assets/animals/'+slug(n)+'.webp'; f=dest/target;f.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(OUT/path,f);credits[n]={**c,'path':target,'status':'reviewer approved'}
+        atomic(dest/'IMAGE_CREDITS.json',credits);return
+    rows=[r for r in rows if args.all or r['name'] in TARGET][args.offset:args.offset+args.limit]
+    for row in rows:
+        n,t=row['name'],row['taxon']; existing=records.get(n,[])
+        if len(existing)>=5 and all((OUT/c['path']).exists() for c in existing):continue
+        pool=[]; found=[c for c in existing if (OUT/c['path']).exists()]; urls={c['url'] for c in found}
         for provider in (inat,commons,gbif):
-            try: pool.extend(provider(taxon))
-            except Exception as e: errors.append(f'{name} {provider.__name__}: {e}')
-        found=[]; urls=set()
-        for c in sorted(pool,key=lambda x:-x['score']):
-            if len(found)>=5: break
-            if c['url'] in urls: continue
+            try:pool.extend(provider(t))
+            except Exception as e:errors.append(f'{n} {provider.__name__}: {e}')
+        for c in sorted(pool,key=lambda c:-c['score'])[:100]:
+            if len(found)>=8:break
+            if c['url'] in urls or BLOCK.search(c['title']):continue
             urls.add(c['url'])
             try:
-                r=s.get(c['url'],timeout=25);r.raise_for_status(); im=ImageOps.exif_transpose(Image.open(io.BytesIO(r.content))).convert('RGB')
-                if max(im.size)<800 or min(im.size)<400: continue
-                digest=hashlib.sha256(im.resize((64,64)).tobytes()).hexdigest()
-                if digest in seen: continue
-                seen.add(digest); c['score']+=min(15,max(im.size)//200); im.thumbnail((1000,1000)); path=f'candidates/{slug}-{len(found)+1}.webp'; (OUT/path).parent.mkdir(exist_ok=True);im.save(OUT/path,'WEBP',quality=85); c['path']=path;found.append(c);tiles.append((name,path))
-            except Exception as e: errors.append(f'{name} download: {e}')
-        if found: manifest[name]=found[0];alternatives[name]=found[1:]
-        else: missing.append(name)
-        print(name,len(found),flush=True)
-        for fn,obj in [('IMAGE_CREDITS.json',manifest),('ALTERNATIVES.json',alternatives)]: (OUT/fn).write_text(json.dumps(obj,ensure_ascii=False,indent=2))
-        (OUT/'MISSING.txt').write_text('\n'.join(missing));(OUT/'ERRORS.txt').write_text('\n'.join(errors))
-    for start in range(0,len(tiles),60):
-        batch=tiles[start:start+60]; sheet=Image.new('RGB',(1000,160*((len(batch)+4)//5)),'white'); draw=ImageDraw.Draw(sheet)
-        for j,(name,path) in enumerate(batch):
-            x=j%5*200;y=j//5*160;im=Image.open(OUT/path);im.thumbnail((190,125));sheet.paste(im,(x,y));draw.text((x,y+126),name,fill='black');draw.text((x,y+140),Path(path).stem[-2:],fill='black')
-        sheet.save(OUT/f'contact-{start//60+1}.jpg')
-    (OUT/'REVIEW.txt').write_text('Candidates only. Verify species, original photo licence and attribution before publication. No existing game assets modified.')
-if __name__=='__main__': run()
+                r=s.get(c['url'],timeout=25);r.raise_for_status();im=ImageOps.exif_transpose(Image.open(io.BytesIO(r.content))).convert('RGB')
+                if max(im.size)<800 or min(im.size)<400:continue
+                h=phash(im)
+                if any((h^x).bit_count()<=4 for x in hashes):continue
+                gray=im.convert('L');gray.thumbnail((256,256)); contrast=ImageStat.Stat(gray).stddev[0];sharp=ImageStat.Stat(gray.filter(ImageFilter.FIND_EDGES)).mean[0]
+                if contrast<8:continue
+                c['score']=round(min(100,c['score']*.75+min(12,max(im.size)/100)+min(8,contrast/6)+min(5,sharp/5)),1);c['dhash']=f'{h:016x}';c['path']='candidates/'+slug(n)+'-'+hashlib.sha256(c['url'].encode()).hexdigest()[:12]+'.webp';c['status']='candidate; manual review required';im.thumbnail((1200,1200));f=OUT/c['path'];f.parent.mkdir(exist_ok=True);im.save(f,'WEBP',quality=82);hashes.append(h);found.append(c)
+            except Exception as e:errors.append(f'{n} download: {e}')
+        records[n]=sorted(found,key=lambda c:-c['score']);atomic(db,records);print(n,len(found),flush=True)
+    atomic(OUT/'IMAGE_CREDITS.json',{n:cs[0] for n,cs in records.items() if cs});atomic(OUT/'ALTERNATIVES.json',{n:cs[1:] for n,cs in records.items() if cs});(OUT/'MISSING.txt').write_text('\n'.join(r['name'] for r in rows if not records.get(r['name'])));(OUT/'ERRORS.txt').write_text('\n'.join(errors));dashboard(records)
+    tiles=[(n,c['path']) for n,cs in records.items() for c in cs]
+    for start in range(0,len(tiles),40):
+        batch=tiles[start:start+40];sheet=Image.new('RGB',(1000,160*((len(batch)+4)//5)),'white');draw=ImageDraw.Draw(sheet)
+        for j,(n,path) in enumerate(batch):
+            try:
+                x=j%5*200;y=j//5*160;im=Image.open(OUT/path);im.thumbnail((190,125));sheet.paste(im,(x,y));draw.text((x,y+126),n,fill='black')
+            except Exception as e: print('Contact sheet:',e)
+        sheet.save(OUT/f'contact-{start//40+1}.jpg')
+if __name__=='__main__':run()
