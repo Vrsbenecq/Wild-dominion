@@ -50,7 +50,7 @@ const wildlifeFrames = {
   },
   "caracal": {
     "fit": "cover",
-    "position": "50% 12%"
+    "position": "50% 48%"
   },
   "cheetah": {
     "fit": "cover",
@@ -78,7 +78,7 @@ const wildlifeFrames = {
   },
   "eurasian-lynx": {
     "fit": "cover",
-    "position": "50% 50%"
+    "position": "100% 50%"
   },
   "fennec-fox": {
     "fit": "cover",
@@ -110,7 +110,7 @@ const wildlifeFrames = {
   },
   "greater-roadrunner": {
     "fit": "cover",
-    "position": "50% 50%"
+    "position": "50% 0%"
   },
   "harpy-eagle": {
     "fit": "cover",
@@ -166,7 +166,7 @@ const wildlifeFrames = {
   },
   "peregrine-falcon": {
     "fit": "cover",
-    "position": "50% 15%"
+    "position": "50% 0%"
   },
   "plains-zebra": {
     "fit": "cover",
@@ -230,7 +230,7 @@ const wildlifeFrames = {
   },
   "wild-boar": {
     "fit": "cover",
-    "position": "50% 50%"
+    "position": "100% 50%"
   },
   "nile-crocodile": {
     "fit": "cover",
@@ -366,7 +366,7 @@ const wildlifeFrames = {
   },
   "flamingo": {
     "fit": "cover",
-    "position": "50% 50%"
+    "position": "0% 50%"
   },
   "great-blue-heron": {
     "fit": "cover",
@@ -403,7 +403,7 @@ const wildlifeFrames = {
 };
 function frameWildlifePhoto(img){
  const slug=img.getAttribute('src')?.split('?')[0].split('/').pop()?.replace(/\.webp$/,'');
- const f=wildlifeFrames[slug]; if(!f)return;
+ const f=wildlifeFrames[slug]; if(!f){img.style.objectFit="cover";img.style.objectPosition="50% 50%";return;}
  img.style.objectFit=f.fit; img.style.objectPosition=f.position;
  const art=img.closest('.art'); if(!art)return;
  art.classList.remove('photo-contained');
