@@ -1,0 +1,1 @@
+.exp-regions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.exp-regions button{font-size:13px;min-height:48px}.exp-stage{display:flex;align-items:center;justify-content:space-between;gap:12px}.exp-stage small{display:block;margin-top:5px;opacity:.8}.exp-stage button{flex-shrink:0}.hero progress{width:100%;accent-color:#d9b86a}
