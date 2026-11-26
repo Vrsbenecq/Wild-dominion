@@ -598,5 +598,305 @@
   },
   "Eyelash Viper": {
     "candidates": 3
+  },
+  "Black Mamba": {
+    "candidates": 3
+  },
+  "Eastern Green Mamba": {
+    "candidates": 3
+  },
+  "Boomslang": {
+    "candidates": 3
+  },
+  "Indian Cobra": {
+    "candidates": 3
+  },
+  "Monocled Cobra": {
+    "candidates": 3
+  },
+  "Green Iguana": {
+    "candidates": 3
+  },
+  "Marine Iguana": {
+    "candidates": 3
+  },
+  "Panther Chameleon": {
+    "candidates": 3
+  },
+  "Veiled Chameleon": {
+    "candidates": 3
+  },
+  "Jackson's Chameleon": {
+    "candidates": 3
+  },
+  "Tokay Gecko": {
+    "candidates": 3
+  },
+  "Crested Gecko": {
+    "candidates": 3
+  },
+  "Giant Day Gecko": {
+    "candidates": 3
+  },
+  "Satanic Leaf-tailed Gecko": {
+    "candidates": 3
+  },
+  "Common Basilisk": {
+    "candidates": 3
+  },
+  "Inland Taipan": {
+    "candidates": 3
+  },
+  "Coastal Taipan": {
+    "candidates": 3
+  },
+  "Eastern Brown Snake": {
+    "candidates": 3
+  },
+  "Western Diamondback Rattlesnake": {
+    "candidates": 3
+  },
+  "Eastern Diamondback Rattlesnake": {
+    "candidates": 3
+  },
+  "Puff Adder": {
+    "candidates": 3
+  },
+  "Horned Viper": {
+    "candidates": 3
+  },
+  "Saw-scaled Viper": {
+    "candidates": 3
+  },
+  "Leopard Gecko": {
+    "candidates": 3
+  },
+  "Central Bearded Dragon": {
+    "candidates": 3
+  },
+  "Frilled Lizard": {
+    "candidates": 3
+  },
+  "Common Chuckwalla": {
+    "candidates": 3
+  },
+  "Desert Iguana": {
+    "candidates": 3
+  },
+  "Mexican Beaded Lizard": {
+    "candidates": 3
+  },
+  "Sand Monitor": {
+    "candidates": 3
+  },
+  "Gharial": {
+    "candidates": 3
+  },
+  "False Gharial": {
+    "candidates": 3
+  },
+  "American Crocodile": {
+    "candidates": 3
+  },
+  "Mugger Crocodile": {
+    "candidates": 3
+  },
+  "Morelet's Crocodile": {
+    "candidates": 3
+  },
+  "Cuban Crocodile": {
+    "candidates": 3
+  },
+  "Chinese Alligator": {
+    "candidates": 3
+  },
+  "Black Caiman": {
+    "candidates": 3
+  },
+  "Spectacled Caiman": {
+    "candidates": 3
+  },
+  "Dwarf Caiman": {
+    "candidates": 3
+  },
+  "Leatherback Turtle": {
+    "candidates": 3
+  },
+  "Hawksbill Turtle": {
+    "candidates": 3
+  },
+  "Loggerhead Turtle": {
+    "candidates": 3
+  },
+  "Olive Ridley Turtle": {
+    "candidates": 3
+  },
+  "Kemp's Ridley Turtle": {
+    "candidates": 3
+  },
+  "Common Snapping Turtle": {
+    "candidates": 3
+  },
+  "Alligator Snapping Turtle": {
+    "candidates": 3
+  },
+  "Eastern Box Turtle": {
+    "candidates": 3
+  },
+  "Galapagos Land Iguana": {
+    "candidates": 3
+  },
+  "Tuatara": {
+    "candidates": 3
+  },
+  "Axolotl": {
+    "candidates": 3
+  },
+  "Tiger Salamander": {
+    "candidates": 3
+  },
+  "Spotted Salamander": {
+    "candidates": 3
+  },
+  "Fire Salamander": {
+    "candidates": 3
+  },
+  "Alpine Newt": {
+    "candidates": 3
+  },
+  "Great Crested Newt": {
+    "candidates": 3
+  },
+  "Smooth Newt": {
+    "candidates": 3
+  },
+  "Eastern Newt": {
+    "candidates": 3
+  },
+  "Japanese Giant Salamander": {
+    "candidates": 3
+  },
+  "Hellbender": {
+    "candidates": 3
+  },
+  "Common Mudpuppy": {
+    "candidates": 3
+  },
+  "Olm": {
+    "candidates": 3
+  },
+  "American Bullfrog": {
+    "candidates": 3
+  },
+  "European Common Frog": {
+    "candidates": 3
+  },
+  "Marsh Frog": {
+    "candidates": 3
+  },
+  "Common Toad": {
+    "candidates": 3
+  },
+  "Natterjack Toad": {
+    "candidates": 3
+  },
+  "Cane Toad": {
+    "candidates": 3
+  },
+  "African Bullfrog": {
+    "candidates": 3
+  },
+  "Goliath Frog": {
+    "candidates": 3
+  },
+  "Red-eyed Tree Frog": {
+    "candidates": 3
+  },
+  "White's Tree Frog": {
+    "candidates": 3
+  },
+  "Amazon Milk Frog": {
+    "candidates": 3
+  },
+  "Vietnamese Mossy Frog": {
+    "candidates": 3
+  },
+  "Malayan Horned Frog": {
+    "candidates": 3
+  },
+  "Surinam Toad": {
+    "candidates": 3
+  },
+  "Purple Frog": {
+    "candidates": 3
+  },
+  "Tomato Frog": {
+    "candidates": 3
+  },
+  "Budgett's Frog": {
+    "candidates": 3
+  },
+  "Golden Mantella": {
+    "candidates": 3
+  },
+  "Tiger Shark": {
+    "candidates": 3
+  },
+  "Bull Shark": {
+    "candidates": 3
+  },
+  "Whale Shark": {
+    "candidates": 3
+  },
+  "Basking Shark": {
+    "candidates": 3
+  },
+  "Shortfin Mako": {
+    "candidates": 3
+  },
+  "Blue Shark": {
+    "candidates": 3
+  },
+  "Oceanic Whitetip Shark": {
+    "candidates": 3
+  },
+  "Blacktip Reef Shark": {
+    "candidates": 3
+  },
+  "Whitetip Reef Shark": {
+    "candidates": 3
+  },
+  "Grey Reef Shark": {
+    "candidates": 3
+  },
+  "Lemon Shark": {
+    "candidates": 3
+  },
+  "Nurse Shark": {
+    "candidates": 3
+  },
+  "Zebra Shark": {
+    "candidates": 3
+  },
+  "Goblin Shark": {
+    "candidates": 1
+  },
+  "Frilled Shark": {
+    "candidates": 3
+  },
+  "Greenland Shark": {
+    "candidates": 3
+  },
+  "Common Thresher": {
+    "candidates": 3
+  },
+  "Sand Tiger Shark": {
+    "candidates": 3
+  },
+  "Spotted Wobbegong": {
+    "candidates": 3
+  },
+  "Port Jackson Shark": {
+    "candidates": 3
   }
 }
