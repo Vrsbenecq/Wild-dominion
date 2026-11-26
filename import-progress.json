@@ -1,0 +1,302 @@
+{
+  "European Hedgehog": {
+    "candidates": 3
+  },
+  "European Rabbit": {
+    "candidates": 3
+  },
+  "European Hare": {
+    "candidates": 3
+  },
+  "European Polecat": {
+    "candidates": 3
+  },
+  "Stoat": {
+    "candidates": 3
+  },
+  "Least Weasel": {
+    "candidates": 3
+  },
+  "Pine Marten": {
+    "candidates": 3
+  },
+  "Stone Marten": {
+    "candidates": 3
+  },
+  "European Mink": {
+    "candidates": 3
+  },
+  "American Mink": {
+    "candidates": 3
+  },
+  "Eastern Chipmunk": {
+    "candidates": 3
+  },
+  "Eastern Gray Squirrel": {
+    "candidates": 3
+  },
+  "Southern Flying Squirrel": {
+    "candidates": 3
+  },
+  "Woodchuck": {
+    "candidates": 3
+  },
+  "Virginia Opossum": {
+    "candidates": 3
+  },
+  "Striped Skunk": {
+    "candidates": 3
+  },
+  "North American Porcupine": {
+    "candidates": 3
+  },
+  "European Mole": {
+    "candidates": 3
+  },
+  "Common Shrew": {
+    "candidates": 3
+  },
+  "Hazel Dormouse": {
+    "candidates": 3
+  },
+  "Wolverine": {
+    "candidates": 3
+  },
+  "Bobcat": {
+    "candidates": 3
+  },
+  "Canada Lynx": {
+    "candidates": 3
+  },
+  "Coyote": {
+    "candidates": 3
+  },
+  "Red Wolf": {
+    "candidates": 3
+  },
+  "Golden Jackal": {
+    "candidates": 3
+  },
+  "Raccoon Dog": {
+    "candidates": 3
+  },
+  "European Wildcat": {
+    "candidates": 3
+  },
+  "Asian Black Bear": {
+    "candidates": 3
+  },
+  "American Marten": {
+    "candidates": 3
+  },
+  "Impala": {
+    "candidates": 3
+  },
+  "Springbok": {
+    "candidates": 3
+  },
+  "Blue Wildebeest": {
+    "candidates": 3
+  },
+  "Black Wildebeest": {
+    "candidates": 3
+  },
+  "Common Eland": {
+    "candidates": 3
+  },
+  "Greater Kudu": {
+    "candidates": 3
+  },
+  "Lesser Kudu": {
+    "candidates": 3
+  },
+  "Sable Antelope": {
+    "candidates": 3
+  },
+  "Roan Antelope": {
+    "candidates": 3
+  },
+  "Topi": {
+    "candidates": 3
+  },
+  "Blesbok": {
+    "candidates": 3
+  },
+  "Waterbuck": {
+    "candidates": 3
+  },
+  "Gerenuk": {
+    "candidates": 3
+  },
+  "Grant's Gazelle": {
+    "candidates": 3
+  },
+  "Thomson's Gazelle": {
+    "candidates": 3
+  },
+  "African Wild Dog": {
+    "candidates": 3
+  },
+  "Serval": {
+    "candidates": 3
+  },
+  "Aardwolf": {
+    "candidates": 3
+  },
+  "Black-backed Jackal": {
+    "candidates": 3
+  },
+  "Striped Hyena": {
+    "candidates": 3
+  },
+  "Fossa": {
+    "candidates": 3
+  },
+  "Binturong": {
+    "candidates": 3
+  },
+  "Ring-tailed Lemur": {
+    "candidates": 3
+  },
+  "Indri": {
+    "candidates": 3
+  },
+  "Aye-aye": {
+    "candidates": 3
+  },
+  "Siamang": {
+    "candidates": 3
+  },
+  "Proboscis Monkey": {
+    "candidates": 3
+  },
+  "Mandrill": {
+    "candidates": 3
+  },
+  "Drill": {
+    "candidates": 3
+  },
+  "Japanese Macaque": {
+    "candidates": 3
+  },
+  "Golden Snub-nosed Monkey": {
+    "candidates": 3
+  },
+  "Black Howler": {
+    "candidates": 3
+  },
+  "Common Marmoset": {
+    "candidates": 3
+  },
+  "Golden Lion Tamarin": {
+    "candidates": 3
+  },
+  "White-faced Capuchin": {
+    "candidates": 3
+  },
+  "Kinkajou": {
+    "candidates": 3
+  },
+  "Coquerel's Sifaka": {
+    "candidates": 3
+  },
+  "Philippine Tarsier": {
+    "candidates": 3
+  },
+  "Slow Loris": {
+    "candidates": 3
+  },
+  "Sugar Glider": {
+    "candidates": 3
+  },
+  "Malayan Sun Bear": {
+    "candidates": 3
+  },
+  "Sloth Bear": {
+    "candidates": 3
+  },
+  "Spectacled Bear": {
+    "candidates": 3
+  },
+  "Giant Panda": {
+    "candidates": 3
+  },
+  "Banteng": {
+    "candidates": 3
+  },
+  "Gaur": {
+    "candidates": 3
+  },
+  "Babirusa": {
+    "candidates": 3
+  },
+  "Collared Peccary": {
+    "candidates": 3
+  },
+  "Giant Anteater": {
+    "candidates": 3
+  },
+  "Giant Armadillo": {
+    "candidates": 3
+  },
+  "Takin": {
+    "candidates": 3
+  },
+  "Markhor": {
+    "candidates": 3
+  },
+  "Argali": {
+    "candidates": 3
+  },
+  "Chamois": {
+    "candidates": 3
+  },
+  "Vicuña": {
+    "candidates": 3
+  },
+  "Guanaco": {
+    "candidates": 3
+  },
+  "Pronghorn": {
+    "candidates": 3
+  },
+  "Siberian Ibex": {
+    "candidates": 3
+  },
+  "Himalayan Marmot": {
+    "candidates": 3
+  },
+  "Gelada": {
+    "candidates": 3
+  },
+  "Dugong": {
+    "candidates": 3
+  },
+  "West Indian Manatee": {
+    "candidates": 3
+  },
+  "Sperm Whale": {
+    "candidates": 3
+  },
+  "Fin Whale": {
+    "candidates": 3
+  },
+  "Minke Whale": {
+    "candidates": 3
+  },
+  "Common Dolphin": {
+    "candidates": 3
+  },
+  "Harbour Porpoise": {
+    "candidates": 3
+  },
+  "California Sea Lion": {
+    "candidates": 3
+  },
+  "Northern Elephant Seal": {
+    "candidates": 3
+  },
+  "Southern Elephant Seal": {
+    "candidates": 3
+  }
+}
