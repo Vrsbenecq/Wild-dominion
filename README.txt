@@ -1,1 +1,1 @@
-V1.4.4: upload root files to root, js files to js, css files to css. Do not replace assets or importer. NEW clears by tapping NEW · Seen. Existing cards are not marked new. Export a backup before updating.
+V1.4.5 UI patch. Upload index.html and version.json to root; css/inventory.css to css; cards.js, ui.js, update.js to js. Replace existing files. No importer or save changes. README optional.
