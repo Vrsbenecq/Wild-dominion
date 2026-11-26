@@ -4,43 +4,85 @@ on:
     inputs:
       mode:
         type: choice
-        options: [final-two, missing, upgrade, expansion]
-        default: final-two
+        options: [next, retry, repack, upgrade, missing, expansion, final-two]
+        default: next
+      source_run_id:
+        description: 'Numeric run ID (repack only)'
+        type: string
+        default: ''
       limit:
         type: choice
-        options: ['2', '50', '100', '250']
-        default: '2'
+        options: ['100', '50', '2']
+        default: '100'
       offset:
+        description: 'Catalog offset (manual modes only)'
         type: string
         default: '0'
 permissions:
-  contents: read
+  contents: write
+  actions: read
+concurrency:
+  group: wild-dominion-photo-import
+  cancel-in-progress: false
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - uses: actions/cache@v4
+        if: inputs.mode != 'repack'
         with:
           path: ~/.cache/huggingface
           key: wd-clip-v32
-      - uses: actions/cache@v4
-        with:
-          path: review
-          key: wd-review-v32-${{ github.run_id }}
-          restore-keys: wd-review-v32-
-      - run: pip install requests pillow 'transformers>=4.48,<5' torch --extra-index-url https://download.pytorch.org/whl/cpu
-      - run: python tools/import_animals.py --mode "$MODE" --limit "$LIMIT" --offset "$OFFSET"
+      - run: pip install requests pillow
+      - if: inputs.mode != 'repack'
+        run: pip install 'transformers>=4.48,<5' torch --extra-index-url https://download.pytorch.org/whl/cpu
+      - if: inputs.mode == 'next' || inputs.mode == 'retry'
+        run: |
+          if git ls-remote --exit-code --heads origin photo-import-progress >/dev/null; then
+            git fetch origin photo-import-progress
+            git show FETCH_HEAD:import-progress.json > import-progress.json
+          else
+            echo '{}' > import-progress.json
+          fi
+      - if: inputs.mode == 'repack'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.source_run_id }}
+          LIMIT: ${{ inputs.limit }}
+          OFFSET: ${{ inputs.offset }}
+        run: |
+          [[ "$RUN_ID" =~ ^[0-9]+$ ]] || exit 1
+          gh run download "$RUN_ID" --name animal-photo-candidates --dir review
+          test -f review/database.json
+          python tools/import_animals.py --repack --limit "$LIMIT" --offset "$OFFSET"
+      - if: inputs.mode != 'repack'
         env:
           MODE: ${{ inputs.mode }}
           LIMIT: ${{ inputs.limit }}
           OFFSET: ${{ inputs.offset }}
+        run: python tools/import_animals.py --mode "$MODE" --limit "$LIMIT" --offset "$OFFSET"
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: animal-photo-candidates
-          path: review/
+          name: animal-photo-review-v34
+          path: review-export/
+          if-no-files-found: error
+      - if: inputs.mode == 'next' || inputs.mode == 'retry'
+        run: |
+          git config user.name 'Wild Dominion importer'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          export GIT_INDEX_FILE="$RUNNER_TEMP/photo-progress-index"
+          git read-tree --empty
+          git add import-progress.json
+          tree=$(git write-tree)
+          if git ls-remote --exit-code --heads origin photo-import-progress >/dev/null; then
+            git fetch origin photo-import-progress
+            commit=$(git commit-tree "$tree" -p FETCH_HEAD -m 'Record completed photo batch')
+          else
+            commit=$(git commit-tree "$tree" -m 'Initialize photo batch progress')
+          fi
+          git push origin "$commit:refs/heads/photo-import-progress"
