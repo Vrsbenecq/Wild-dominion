@@ -1,1 +1,1 @@
-Requires V1.4.1. Upload js/session.js and js/update.js into js/, then index.html and version.json into repository root. Existing valid saves are retained. New saves receive six Common animals and 500 coins. No rarity or photograph changes.
+Install over V1.4.2. Upload files to matching folders. Upload version.json last. Open game with ?photoAudit=1 to enable local review menu for this browser session. This is not access control. Six framing fixes; eleven replacement/source reviews remain pending. No photo bytes or credits changed. No save changes.
