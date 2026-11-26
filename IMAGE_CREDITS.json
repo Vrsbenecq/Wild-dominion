@@ -5322,23 +5322,16 @@
     "review_status": "visual candidate reviewed; source licence metadata not independently verified"
   },
   "Goblin Shark": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Bycatch_fish_species_%2810.3897-zookeys.843.32410%29_Figure_5.jpg/1280px-Bycatch_fish_species_%2810.3897-zookeys.843.32410%29_Figure_5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "author": "Miyazaki Y, Teramura A, Senou H (2019) Preliminary report on bycatch fish species collected from the Tokyo Submarine Canyon, Japan. ZooKeys 843: 129-147.  https://doi.org/10.3897/zookeys.843.32410",
+    "author": "Dianne Bray",
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Bycatch_fish_species_(10.3897-zookeys.843.32410)_Figure_5.jpg",
-    "title": "File:Bycatch fish species (10.3897-zookeys.843.32410) Figure 5.jpg",
+    "source": "https://collections.museumsvictoria.com.au/specimens/109824",
+    "title": "Goblin Shark (Mitsukurina owstoni)",
     "search_taxon": "Mitsukurina owstoni",
-    "provider": "Wikimedia",
-    "score": 84.3,
-    "modifications": "Resized and converted to WebP",
-    "status": "candidate; manual review required",
-    "visual_probability": 0.893,
-    "visual_label": "a wildlife photograph of a living Goblin Shark, clearly visible living animal",
-    "dhash": "6626262667773424",
+    "provider": "Museums Victoria",
+    "modifications": "Resized and converted to WebP; no crop",
     "path": "assets/animals/goblin-shark.webp",
-    "metadata_match": true,
-    "review_status": "provisional metadata selection; independent review pending"
+    "review_status": "User supplied image from previously recommended source; exact image attribution not independently rechecked"
   },
   "Frilled Shark": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Frilled_shark_head.jpg/1280px-Frilled_shark_head.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
