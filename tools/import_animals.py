@@ -120,7 +120,7 @@ def diverse_pool(pool,limit=100):
             if len(out)>=limit: break
     return out
 
-def select_diverse(items,limit=8):
+def select_diverse(items,limit=3):
     chosen=[]; authors=Counter(); observations=set(); providers=Counter()
     pending=sorted(items,key=lambda c:-c['score'])
     while pending and len(chosen)<limit:
@@ -131,7 +131,7 @@ def select_diverse(items,limit=8):
     return sorted(chosen,key=lambda c:-c['score'])
 
 def run():
-    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--mode',choices=['missing','upgrade','expansion','final-two'],default='final-two');ap.add_argument('--threshold',type=float,default=.45);ap.add_argument('--pool',type=int,default=150);ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--mode',choices=['missing','upgrade','expansion','final-two'],default='final-two');ap.add_argument('--threshold',type=float,default=.45);ap.add_argument('--pool',type=int,default=30);ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);ap.add_argument('--repack',action='store_true');args=ap.parse_args()
     db=OUT/'database.json'; records=json.loads(db.read_text()) if db.exists() else {}; rows=catalog(); errors=[]; hashes=[int(c['dhash'],16) for cs in records.values() for c in cs if 'dhash' in c]
     approved_file=ROOT/'tools/approved_photos.json'
     approved=json.loads(approved_file.read_text()) if approved_file.exists() else {}
@@ -150,12 +150,16 @@ def run():
             for f in dest.rglob('*'):
                 if f.is_file(): z.write(f,f.relative_to(dest))
         return
+    if args.repack:
+        publish(records, rows, approved, errors); return
     visual=Visual()
+    all_rows=rows
     if args.mode=='expansion' and not args.all: rows=rows[100:]
     rows=[r for r in rows if args.all or args.mode in ('upgrade','expansion') or (args.mode=='missing' and r['name'] not in approved) or (args.mode=='final-two' and r['name'] in TARGET)][args.offset:args.offset+args.limit]
+    rows=[r for r in rows if (r['name'] not in approved or args.mode=='upgrade') and (args.mode=='upgrade' or len(records.get(r['name'],[]))<3)]
     for row in rows:
         n,t=row['name'],row['taxon']; existing=records.get(n,[])
-        if args.mode!='upgrade' and len(existing)>=5 and all((OUT/c['path']).exists() and 'visual_probability' in c for c in existing):continue
+        if args.mode!='upgrade' and len(existing)>=3 and all((OUT/c['path']).exists() and 'visual_probability' in c for c in existing):continue
         pool=[]; found=[c for c in existing if (OUT/c['path']).exists() and 'visual_probability' in c]; urls={c['url'] for c in found}
         for provider in (inat,commons,gbif):
             try:pool.extend(provider(t))
@@ -173,16 +177,79 @@ def run():
                 probability,label,probs=visual.score(im,n)
                 if probability<args.threshold or probability<max(probs[1:]):continue
                 c['visual_probability']=round(probability,4);c['visual_label']=label
-                c['score']=round(min(100,c['score']*.75+min(12,max(im.size)/100)+min(8,contrast/6)+min(5,sharp/5)),1);c['score']=round(c['score']*.4+probability*60,1);c['dhash']=f'{h:016x}';c['path']='candidates/'+slug(n)+'-'+hashlib.sha256(c['url'].encode()).hexdigest()[:12]+'.webp';c['status']='candidate; manual review required';im.thumbnail((1200,1200));f=OUT/c['path'];f.parent.mkdir(exist_ok=True);im.save(f,'WEBP',quality=82);hashes.append(h);found.append(c)
+                c['score']=round(min(100,c['score']*.75+min(12,max(im.size)/100)+min(8,contrast/6)+min(5,sharp/5)),1);c['score']=round(c['score']*.4+probability*60,1);c['dhash']=f'{h:016x}';c['path']='candidates/'+slug(n)+'-'+hashlib.sha256(c['url'].encode()).hexdigest()[:12]+'.webp';c['status']='candidate; manual review required';f=OUT/c['path'];f.parent.mkdir(exist_ok=True);save_small(im,f);hashes.append(h);found.append(c)
             except Exception as e:errors.append(f'{n} download: {e}')
-        records[n]=select_diverse(found);atomic(db,records);print(n,len(records[n]),'selected from',len(found),flush=True)
-    atomic(OUT/'IMAGE_CREDITS.json',{n:cs[0] for n,cs in records.items() if cs});atomic(OUT/'ALTERNATIVES.json',{n:cs[1:] for n,cs in records.items() if cs});(OUT/'MISSING.txt').write_text('\n'.join(r['name'] for r in rows if not records.get(r['name'])));(OUT/'ERRORS.txt').write_text('\n'.join(errors));dashboard(records)
-    tiles=[(n,c['path']) for n,cs in records.items() for c in cs]
-    for start in range(0,len(tiles),40):
-        batch=tiles[start:start+40];sheet=Image.new('RGB',(1000,160*((len(batch)+4)//5)),'white');draw=ImageDraw.Draw(sheet)
-        for j,(n,path) in enumerate(batch):
+        records[n]=select_diverse(found);atomic(db,records);
+        keep={c['path'] for c in records[n]}
+        for c in found:
+            if c['path'] not in keep: (OUT/c['path']).unlink(missing_ok=True)
+        print(n,len(records[n]),'selected from',len(found),flush=True)
+    publish(records, all_rows, approved, errors)
+
+def save_small(im, path):
+    im=im.copy(); im.thumbnail((800,800))
+    for q in (82,72,60,48,35):
+        im.save(path,'WEBP',quality=q)
+        if path.stat().st_size<=90000: return
+    while path.stat().st_size>90000:
+        im.thumbnail((max(1,int(im.width*.8)),max(1,int(im.height*.8))))
+        im.save(path,'WEBP',quality=35)
+
+def publish(records, rows, approved, errors):
+    import shutil
+    export=ROOT/'review-export'
+    if export.exists(): shutil.rmtree(export)
+    export.mkdir()
+    clean_records={}; seen=set()
+    for row in rows:
+        n=row['name']; valid=[]
+        for c in sorted(records.get(n,[]),key=lambda c:-c.get('score',0)):
+            path=c.get('path',''); f=OUT/path
+            if not path.startswith('candidates/') or not f.resolve().is_relative_to(OUT.resolve()) or not f.is_file(): continue
+            if not licence(c.get('license_url')) or not c.get('author') or not c.get('source') or c.get('search_taxon','').casefold()!=row['taxon'].casefold(): continue
             try:
-                x=j%5*200;y=j//5*160;im=Image.open(OUT/path);im.thumbnail((190,125));sheet.paste(im,(x,y));draw.text((x,y+126),n,fill='black')
-            except Exception as e: print('Contact sheet:',e)
-        sheet.save(OUT/f'contact-{start//40+1}.jpg')
+                with Image.open(f) as im:
+                    im=ImageOps.exif_transpose(im).convert('RGB'); h=phash(im)
+                    if any((h^x).bit_count()<=4 for x in seen): continue
+                    save_small(im,f)
+                seen.add(h); valid.append(c)
+                if len(valid)==3: break
+            except Exception as e: errors.append(f'{n}: {e}')
+        if valid: clean_records[n]=valid
+    atomic(OUT/'database.json',clean_records)
+    keep={c['path'] for cs in clean_records.values() for c in cs}
+    for f in (OUT/'candidates').glob('*'):
+        if f.is_file() and f.relative_to(OUT).as_posix() not in keep: f.unlink()
+    coverage=[dict(name=r['name'],taxon=r['taxon'],approved=r['name'] in approved,candidates=len(clean_records.get(r['name'],[]))) for r in rows]
+    atomic(export/'coverage.json',coverage)
+    (export/'ERRORS.txt').write_text('\n'.join(errors))
+    (export/'MISSING.txt').write_text('\n'.join(r['name'] for r in coverage if not r['approved'] and not r['candidates']))
+    # Separate self-contained batches; only shortlisted images enter artifacts.
+    names=list(clean_records)
+    for start in range(0,len(names),100):
+        batch={n:clean_records[n] for n in names[start:start+100]}
+        folder=export/f'batch-{start//100+1:02d}'; folder.mkdir()
+        for cs in batch.values():
+            for c in cs:
+                f=folder/c['path']; f.parent.mkdir(exist_ok=True); shutil.copyfile(OUT/c['path'],f)
+        dashboard(batch); shutil.copyfile(OUT/'review.html',folder/'review.html')
+        atomic(folder/'database.json',batch)
+        atomic(folder/'IMAGE_CREDITS.json',{n:cs[0] for n,cs in batch.items()})
+        atomic(folder/'ALTERNATIVES.json',{n:cs[1:] for n,cs in batch.items()})
+        tiles=[(n,c) for n,cs in batch.items() for c in cs]
+        for k in range(0,len(tiles),30):
+            chunk=tiles[k:k+30]; sheet=Image.new('RGB',(1000,190*((len(chunk)+4)//5)),'white'); draw=ImageDraw.Draw(sheet)
+            for j,(n,c) in enumerate(chunk):
+                x=j%5*200;y=j//5*190
+                with Image.open(folder/c['path']) as im:
+                    im.thumbnail((190,145));sheet.paste(im,(x,y))
+                draw.text((x,y+145),n[:30],fill='black');draw.text((x,y+160),Path(c['path']).stem[-12:],fill='black')
+            sheet.save(folder/f'contact-{k//30+1}.jpg',quality=75)
+        zpath=export/(folder.name+'.zip')
+        with zipfile.ZipFile(zpath,'w',zipfile.ZIP_DEFLATED) as z:
+            for f in folder.rglob('*'):
+                if f.is_file(): z.write(f,f.relative_to(folder))
+        if zpath.stat().st_size>150_000_000: raise RuntimeError('Archive exceeds 150 MB')
+        shutil.rmtree(folder)
+    print(f'Coverage: {len(clean_records)}/{len(rows)} species with candidates',flush=True)
 if __name__=='__main__':run()
