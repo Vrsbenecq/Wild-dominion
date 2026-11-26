@@ -1,1 +1,1 @@
-Install over V1.4.2. Upload files to matching folders. Upload version.json last. Open game with ?photoAudit=1 to enable local review menu for this browser session. This is not access control. Six framing fixes; eleven replacement/source reviews remain pending. No photo bytes or credits changed. No save changes.
+V1.4.4: upload root files to root, js files to js, css files to css. Do not replace assets or importer. NEW clears by tapping NEW · Seen. Existing cards are not marked new. Export a backup before updating.
