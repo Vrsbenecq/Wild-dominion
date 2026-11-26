@@ -1,6 +1,6 @@
 import {auth} from './firebase.js?v=1.1.0';
 import {GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged,setPersistence,browserLocalPersistence} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
-import {connect,disconnect,flush} from './cloud.js?v=1.1.0';
+import {connect,disconnect,flush} from './cloud.js?v=1.4.1';
 const login=document.getElementById('google-login'),logout=document.getElementById('google-logout'),retry=document.getElementById('cloud-retry'),status=document.getElementById('cloud-status'),name=document.getElementById('account-name'),photo=document.getElementById('account-photo');
 login.onclick=async()=>{try{await signInWithPopup(auth,new GoogleAuthProvider())}catch(e){status.textContent='Login failed: '+e.code+' — try Safari if opened from home screen.'}};
 logout.onclick=async()=>{if(!confirm('Sign out? Your local progress stays on this device.'))return;await flush();try{await signOut(auth)}catch(e){status.textContent=e.message}};

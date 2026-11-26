@@ -5,3 +5,9 @@ const overrides={'African Lion':[92,81,70,75,78,95],'Cheetah':[58,99,45,65,40,90
 
 // Preserve original IDs and ratings.
 for (const a of expansion140) species.push({...a,id:species.length});
+
+// Stable ranking by unboosted total, then strongest stat, then collection ID.
+const tierCounts=[160,120,80,50,35,25,15,10,5];
+const strengthOrder=[...species].sort((a,b)=>b.base.reduce((x,y)=>x+y,0)-a.base.reduce((x,y)=>x+y,0)||Math.max(...b.base)-Math.max(...a.base)||a.id-b.id);
+let rankOffset=0;for(let r=8;r>=0;r--){for(const a of strengthOrder.slice(rankOffset,rankOffset+tierCounts[r]))a.rarity=r;rankOffset+=tierCounts[r];}
+const tierPools=rarities.map((_,r)=>species.filter(a=>a.rarity===r));
