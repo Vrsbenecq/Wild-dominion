@@ -85,7 +85,10 @@ def phash(im):
     a=list(im.convert('L').resize((9,8)).getdata()); return sum((a[y*9+x]>a[y*9+x+1])<< (y*8+x) for y in range(8) for x in range(8))
 def catalog():
     f=ROOT/'tools/animal_catalog.json'
-    if f.exists(): return json.loads(f.read_text())
+    if f.exists():
+        rows=json.loads(f.read_text())
+        if len(rows)!=500 or len({r['name'] for r in rows})!=500 or any(not r.get('taxon') for r in rows): raise ValueError('Expected 500 unique named animals with taxonomy')
+        return rows
     names=[n for group in re.findall(r"\['[^']+','[^']+','([^']+)'\]",(ROOT/'js/animals.js').read_text()) for n in group.split(',')]
     if len(names)!=len(taxa): raise ValueError('Expanded game requires tools/animal_catalog.json with name and taxon for every card')
     return [dict(name=n,taxon=t) for n,t in zip(names,taxa)]
@@ -131,7 +134,7 @@ def select_diverse(items,limit=3):
     return sorted(chosen,key=lambda c:-c['score'])
 
 def run():
-    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--mode',choices=['missing','upgrade','expansion','final-two'],default='final-two');ap.add_argument('--threshold',type=float,default=.45);ap.add_argument('--pool',type=int,default=30);ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);ap.add_argument('--repack',action='store_true');args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--all',action='store_true');ap.add_argument('--mode',choices=['missing','upgrade','expansion','final-two','next','retry'],default='next');ap.add_argument('--threshold',type=float,default=.45);ap.add_argument('--pool',type=int,default=30);ap.add_argument('--limit',type=int,default=50);ap.add_argument('--offset',type=int,default=0);ap.add_argument('--decisions',type=Path);ap.add_argument('--repack',action='store_true');ap.add_argument('--state',type=Path,default=ROOT/'import-progress.json');args=ap.parse_args()
     db=OUT/'database.json'; records=json.loads(db.read_text()) if db.exists() else {}; rows=catalog(); errors=[]; hashes=[int(c['dhash'],16) for cs in records.values() for c in cs if 'dhash' in c]
     approved_file=ROOT/'tools/approved_photos.json'
     approved=json.loads(approved_file.read_text()) if approved_file.exists() else {}
@@ -139,6 +142,7 @@ def run():
         decisions=json.loads(args.decisions.read_text()); import shutil
         dest=ROOT/'approved'; dest.mkdir(exist_ok=True); credits=dict(approved)
         for n,path in decisions.items():
+            if n in approved: continue
             c=next(c for c in records[n] if c['path']==path)
             if c['provider']=='Wikimedia':
                 pages=get(action='query',titles=c['title'],prop='imageinfo',iiprop='extmetadata')
@@ -150,12 +154,22 @@ def run():
             for f in dest.rglob('*'):
                 if f.is_file(): z.write(f,f.relative_to(dest))
         return
-    if args.repack:
-        publish(records, rows, approved, errors); return
-    visual=Visual()
+    if len(rows)!=500: raise ValueError('Expected full 500-animal catalog')
     all_rows=rows
+    state=json.loads(args.state.read_text()) if args.state.exists() else {}
+    if args.repack:
+        selected=rows[args.offset:args.offset+args.limit]
+        if not any(records.get(r['name']) for r in selected): raise ValueError('Source artifact has no candidates for requested catalog range; use next mode')
+        publish(records, selected, approved, errors, all_rows); return
+    if args.mode in ('next','retry'):
+        eligible=[r for r in rows[100:] if r['name'] not in approved and ((r['name'] not in state) if args.mode=='next' else (r['name'] in state and state[r['name']].get('candidates',0)==0))]
+        rows=eligible[:args.limit]
+        if not rows:
+            print('No eligible species remaining'); publish({}, [], approved, errors, all_rows, state); return
+        records={}; hashes=[]
+    visual=Visual()
     if args.mode=='expansion' and not args.all: rows=rows[100:]
-    rows=[r for r in rows if args.all or args.mode in ('upgrade','expansion') or (args.mode=='missing' and r['name'] not in approved) or (args.mode=='final-two' and r['name'] in TARGET)][args.offset:args.offset+args.limit]
+    if args.mode not in ('next','retry'): rows=[r for r in rows if args.all or args.mode in ('upgrade','expansion') or (args.mode=='missing' and r['name'] not in approved) or (args.mode=='final-two' and r['name'] in TARGET)][args.offset:args.offset+args.limit]
     rows=[r for r in rows if (r['name'] not in approved or args.mode=='upgrade') and (args.mode=='upgrade' or len(records.get(r['name'],[]))<3)]
     for row in rows:
         n,t=row['name'],row['taxon']; existing=records.get(n,[])
@@ -184,7 +198,11 @@ def run():
         for c in found:
             if c['path'] not in keep: (OUT/c['path']).unlink(missing_ok=True)
         print(n,len(records[n]),'selected from',len(found),flush=True)
-    publish(records, all_rows, approved, errors)
+    counts=publish(records, rows, approved, errors, all_rows, state)
+    if args.mode in ('next','retry'):
+        for r in rows: state[r['name']]={'candidates':counts.get(r['name'],0)}
+        atomic(args.state,state)
+        atomic(ROOT/'review-export/progress.json',state)
 
 def save_small(im, path):
     im=im.copy(); im.thumbnail((800,800))
@@ -195,7 +213,7 @@ def save_small(im, path):
         im.thumbnail((max(1,int(im.width*.8)),max(1,int(im.height*.8))))
         im.save(path,'WEBP',quality=35)
 
-def publish(records, rows, approved, errors):
+def publish(records, rows, approved, errors, all_rows=None, state=None):
     import shutil
     export=ROOT/'review-export'
     if export.exists(): shutil.rmtree(export)
@@ -220,10 +238,14 @@ def publish(records, rows, approved, errors):
     keep={c['path'] for cs in clean_records.values() for c in cs}
     for f in (OUT/'candidates').glob('*'):
         if f.is_file() and f.relative_to(OUT).as_posix() not in keep: f.unlink()
-    coverage=[dict(name=r['name'],taxon=r['taxon'],approved=r['name'] in approved,candidates=len(clean_records.get(r['name'],[]))) for r in rows]
+    coverage=[dict(name=r['name'],taxon=r['taxon'],approved=r['name'] in approved,candidates=len(clean_records.get(r['name'],[]))) for r in (all_rows if all_rows is not None else rows)]
+    selected_names={r['name'] for r in rows}
+    for r in coverage:
+        r['in_batch']=r['name'] in selected_names
+        r['previous_candidates']=(state or {}).get(r['name'],{}).get('candidates')
     atomic(export/'coverage.json',coverage)
     (export/'ERRORS.txt').write_text('\n'.join(errors))
-    (export/'MISSING.txt').write_text('\n'.join(r['name'] for r in coverage if not r['approved'] and not r['candidates']))
+    (export/'MISSING.txt').write_text('\n'.join(r['name'] for r in coverage if r['in_batch'] and not r['approved'] and not r['candidates']))
     # Separate self-contained batches; only shortlisted images enter artifacts.
     names=list(clean_records)
     for start in range(0,len(names),100):
@@ -251,5 +273,6 @@ def publish(records, rows, approved, errors):
                 if f.is_file(): z.write(f,f.relative_to(folder))
         if zpath.stat().st_size>150_000_000: raise RuntimeError('Archive exceeds 150 MB')
         shutil.rmtree(folder)
-    print(f'Coverage: {len(clean_records)}/{len(rows)} species with candidates',flush=True)
+    print(f'Batch: {len(clean_records)}/{len(rows)} species with candidates',flush=True)
+    return {n:len(cs) for n,cs in clean_records.items()}
 if __name__=='__main__':run()
