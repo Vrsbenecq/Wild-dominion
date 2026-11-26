@@ -1,1 +1,1 @@
-Export progress first. Upload js contents to js, index.html to root, version.json to root last. No photo or Firebase configuration changes. Old copies retained; rarity converted by species ID. Test cloud and local saves before further updates.
+Requires V1.4.1. Upload js/session.js and js/update.js into js/, then index.html and version.json into repository root. Existing valid saves are retained. New saves receive six Common animals and 500 coins. No rarity or photograph changes.
