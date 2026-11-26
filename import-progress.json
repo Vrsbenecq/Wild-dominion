@@ -298,5 +298,305 @@
   },
   "Southern Elephant Seal": {
     "candidates": 3
+  },
+  "European Robin": {
+    "candidates": 3
+  },
+  "Common Blackbird": {
+    "candidates": 3
+  },
+  "Song Thrush": {
+    "candidates": 3
+  },
+  "Eurasian Jay": {
+    "candidates": 3
+  },
+  "Common Raven": {
+    "candidates": 3
+  },
+  "Carrion Crow": {
+    "candidates": 3
+  },
+  "Eurasian Magpie": {
+    "candidates": 3
+  },
+  "Great Tit": {
+    "candidates": 3
+  },
+  "Blue Tit": {
+    "candidates": 3
+  },
+  "Eurasian Nuthatch": {
+    "candidates": 3
+  },
+  "Great Spotted Woodpecker": {
+    "candidates": 3
+  },
+  "Black Woodpecker": {
+    "candidates": 3
+  },
+  "Pileated Woodpecker": {
+    "candidates": 3
+  },
+  "Northern Cardinal": {
+    "candidates": 3
+  },
+  "Blue Jay": {
+    "candidates": 3
+  },
+  "American Robin": {
+    "candidates": 3
+  },
+  "Common Chaffinch": {
+    "candidates": 3
+  },
+  "European Goldfinch": {
+    "candidates": 3
+  },
+  "Bohemian Waxwing": {
+    "candidates": 3
+  },
+  "Common Cuckoo": {
+    "candidates": 3
+  },
+  "Tawny Owl": {
+    "candidates": 3
+  },
+  "Barn Owl": {
+    "candidates": 3
+  },
+  "Long-eared Owl": {
+    "candidates": 3
+  },
+  "Eurasian Eagle-Owl": {
+    "candidates": 3
+  },
+  "Northern Goshawk": {
+    "candidates": 3
+  },
+  "Red-tailed Hawk": {
+    "candidates": 3
+  },
+  "Common Buzzard": {
+    "candidates": 3
+  },
+  "Eurasian Sparrowhawk": {
+    "candidates": 3
+  },
+  "Cooper's Hawk": {
+    "candidates": 3
+  },
+  "Barred Owl": {
+    "candidates": 3
+  },
+  "Scarlet Macaw": {
+    "candidates": 3
+  },
+  "Blue-and-yellow Macaw": {
+    "candidates": 3
+  },
+  "Hyacinth Macaw": {
+    "candidates": 3
+  },
+  "African Grey Parrot": {
+    "candidates": 3
+  },
+  "Sulphur-crested Cockatoo": {
+    "candidates": 3
+  },
+  "Rainbow Lorikeet": {
+    "candidates": 3
+  },
+  "Kakapo": {
+    "candidates": 3
+  },
+  "Kea": {
+    "candidates": 3
+  },
+  "Victoria Crowned Pigeon": {
+    "candidates": 3
+  },
+  "Nicobar Pigeon": {
+    "candidates": 3
+  },
+  "Resplendent Quetzal": {
+    "candidates": 3
+  },
+  "Great Hornbill": {
+    "candidates": 3
+  },
+  "Rhinoceros Hornbill": {
+    "candidates": 3
+  },
+  "King Bird-of-paradise": {
+    "candidates": 3
+  },
+  "Greater Bird-of-paradise": {
+    "candidates": 3
+  },
+  "Superb Lyrebird": {
+    "candidates": 3
+  },
+  "Golden Pheasant": {
+    "candidates": 3
+  },
+  "Lady Amherst's Pheasant": {
+    "candidates": 3
+  },
+  "Indian Peafowl": {
+    "candidates": 3
+  },
+  "Helmeted Guineafowl": {
+    "candidates": 3
+  },
+  "Southern Cassowary": {
+    "candidates": 3
+  },
+  "Emu": {
+    "candidates": 3
+  },
+  "Greater Rhea": {
+    "candidates": 3
+  },
+  "Kori Bustard": {
+    "candidates": 3
+  },
+  "Great Bustard": {
+    "candidates": 3
+  },
+  "Southern Ground Hornbill": {
+    "candidates": 3
+  },
+  "Red-legged Seriema": {
+    "candidates": 3
+  },
+  "Crested Francolin": {
+    "candidates": 3
+  },
+  "Wild Turkey": {
+    "candidates": 3
+  },
+  "Common Pheasant": {
+    "candidates": 3
+  },
+  "Shoebill": {
+    "candidates": 3
+  },
+  "Marabou Stork": {
+    "candidates": 3
+  },
+  "White Stork": {
+    "candidates": 3
+  },
+  "Black Stork": {
+    "candidates": 3
+  },
+  "Great Egret": {
+    "candidates": 3
+  },
+  "Little Egret": {
+    "candidates": 3
+  },
+  "Grey Heron": {
+    "candidates": 3
+  },
+  "Scarlet Ibis": {
+    "candidates": 3
+  },
+  "African Sacred Ibis": {
+    "candidates": 3
+  },
+  "Roseate Spoonbill": {
+    "candidates": 3
+  },
+  "Mute Swan": {
+    "candidates": 3
+  },
+  "Whooper Swan": {
+    "candidates": 3
+  },
+  "Canada Goose": {
+    "candidates": 3
+  },
+  "Mallard": {
+    "candidates": 3
+  },
+  "Mandarin Duck": {
+    "candidates": 3
+  },
+  "Atlantic Puffin": {
+    "candidates": 3
+  },
+  "Tufted Puffin": {
+    "candidates": 3
+  },
+  "Wandering Albatross": {
+    "candidates": 3
+  },
+  "Northern Gannet": {
+    "candidates": 3
+  },
+  "Brown Pelican": {
+    "candidates": 3
+  },
+  "Great Cormorant": {
+    "candidates": 3
+  },
+  "Magnificent Frigatebird": {
+    "candidates": 3
+  },
+  "Blue-footed Booby": {
+    "candidates": 3
+  },
+  "King Penguin": {
+    "candidates": 3
+  },
+  "Adélie Penguin": {
+    "candidates": 3
+  },
+  "Bearded Vulture": {
+    "candidates": 3
+  },
+  "Griffon Vulture": {
+    "candidates": 3
+  },
+  "California Condor": {
+    "candidates": 3
+  },
+  "Steller's Sea Eagle": {
+    "candidates": 3
+  },
+  "Bald Eagle": {
+    "candidates": 3
+  },
+  "Reticulated Python": {
+    "candidates": 3
+  },
+  "Burmese Python": {
+    "candidates": 3
+  },
+  "Ball Python": {
+    "candidates": 3
+  },
+  "African Rock Python": {
+    "candidates": 3
+  },
+  "Boa Constrictor": {
+    "candidates": 3
+  },
+  "Emerald Tree Boa": {
+    "candidates": 3
+  },
+  "Green Tree Python": {
+    "candidates": 3
+  },
+  "Gaboon Viper": {
+    "candidates": 3
+  },
+  "Bushmaster": {
+    "candidates": 3
+  },
+  "Eyelash Viper": {
+    "candidates": 3
   }
 }
