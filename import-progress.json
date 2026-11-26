@@ -898,5 +898,305 @@
   },
   "Port Jackson Shark": {
     "candidates": 3
+  },
+  "Spotted Eagle Ray": {
+    "candidates": 3
+  },
+  "Southern Stingray": {
+    "candidates": 3
+  },
+  "Blue-spotted Ribbontail Ray": {
+    "candidates": 3
+  },
+  "Smalltooth Sawfish": {
+    "candidates": 3
+  },
+  "Electric Ray": {
+    "candidates": 3
+  },
+  "Ocean Sunfish": {
+    "candidates": 3
+  },
+  "Opah": {
+    "candidates": 2
+  },
+  "Atlantic Bluefin Tuna": {
+    "candidates": 3
+  },
+  "Yellowfin Tuna": {
+    "candidates": 3
+  },
+  "Atlantic Sailfish": {
+    "candidates": 1
+  },
+  "Blue Marlin": {
+    "candidates": 3
+  },
+  "Mahi-mahi": {
+    "candidates": 3
+  },
+  "Wahoo": {
+    "candidates": 3
+  },
+  "Atlantic Cod": {
+    "candidates": 3
+  },
+  "Atlantic Halibut": {
+    "candidates": 3
+  },
+  "Atlantic Herring": {
+    "candidates": 3
+  },
+  "European Anchovy": {
+    "candidates": 3
+  },
+  "Atlantic Mackerel": {
+    "candidates": 3
+  },
+  "Giant Oarfish": {
+    "candidates": 3
+  },
+  "Coelacanth": {
+    "candidates": 3
+  },
+  "Goliath Grouper": {
+    "candidates": 3
+  },
+  "Giant Moray": {
+    "candidates": 3
+  },
+  "Green Moray": {
+    "candidates": 3
+  },
+  "Red Lionfish": {
+    "candidates": 3
+  },
+  "Reef Stonefish": {
+    "candidates": 3
+  },
+  "Atlantic Wolffish": {
+    "candidates": 3
+  },
+  "Giant Trevally": {
+    "candidates": 3
+  },
+  "Fangtooth": {
+    "candidates": 0
+  },
+  "Black Dragonfish": {
+    "candidates": 0
+  },
+  "Humpback Anglerfish": {
+    "candidates": 3
+  },
+  "Ocellaris Clownfish": {
+    "candidates": 3
+  },
+  "Blue Tang": {
+    "candidates": 3
+  },
+  "Yellow Tang": {
+    "candidates": 3
+  },
+  "Mandarinfish": {
+    "candidates": 3
+  },
+  "Emperor Angelfish": {
+    "candidates": 3
+  },
+  "Longsnout Seahorse": {
+    "candidates": 3
+  },
+  "Leafy Seadragon": {
+    "candidates": 3
+  },
+  "Clown Triggerfish": {
+    "candidates": 3
+  },
+  "Porcupinefish": {
+    "candidates": 3
+  },
+  "Longhorn Cowfish": {
+    "candidates": 3
+  },
+  "Arapaima": {
+    "candidates": 3
+  },
+  "Alligator Gar": {
+    "candidates": 3
+  },
+  "Northern Pike": {
+    "candidates": 3
+  },
+  "Wels Catfish": {
+    "candidates": 3
+  },
+  "Electric Eel": {
+    "candidates": 3
+  },
+  "Red-bellied Piranha": {
+    "candidates": 3
+  },
+  "Goliath Tigerfish": {
+    "candidates": 0
+  },
+  "Mekong Giant Catfish": {
+    "candidates": 3
+  },
+  "Beluga Sturgeon": {
+    "candidates": 0
+  },
+  "Atlantic Salmon": {
+    "candidates": 3
+  },
+  "Goliath Birdeater": {
+    "candidates": 3
+  },
+  "Brazilian Wandering Spider": {
+    "candidates": 3
+  },
+  "Golden Silk Orb-weaver": {
+    "candidates": 3
+  },
+  "Peacock Spider": {
+    "candidates": 3
+  },
+  "Giant Huntsman Spider": {
+    "candidates": 2
+  },
+  "Mexican Red-knee Tarantula": {
+    "candidates": 3
+  },
+  "Emperor Scorpion": {
+    "candidates": 3
+  },
+  "Asian Forest Scorpion": {
+    "candidates": 3
+  },
+  "Giant Centipede": {
+    "candidates": 3
+  },
+  "Giant African Millipede": {
+    "candidates": 2
+  },
+  "Orchid Mantis": {
+    "candidates": 3
+  },
+  "Devil's Flower Mantis": {
+    "candidates": 3
+  },
+  "European Mantis": {
+    "candidates": 3
+  },
+  "Atlas Moth": {
+    "candidates": 3
+  },
+  "Luna Moth": {
+    "candidates": 3
+  },
+  "Blue Morpho": {
+    "candidates": 3
+  },
+  "Monarch Butterfly": {
+    "candidates": 3
+  },
+  "Glasswing Butterfly": {
+    "candidates": 3
+  },
+  "Hercules Beetle": {
+    "candidates": 3
+  },
+  "Goliath Beetle": {
+    "candidates": 3
+  },
+  "Titan Beetle": {
+    "candidates": 3
+  },
+  "Giant Stag Beetle": {
+    "candidates": 3
+  },
+  "Bullet Ant": {
+    "candidates": 3
+  },
+  "Leafcutter Ant": {
+    "candidates": 3
+  },
+  "Giant Water Bug": {
+    "candidates": 3
+  },
+  "Common Octopus": {
+    "candidates": 3
+  },
+  "Blue-ringed Octopus": {
+    "candidates": 3
+  },
+  "Mimic Octopus": {
+    "candidates": 3
+  },
+  "Vampire Squid": {
+    "candidates": 1
+  },
+  "Giant Squid": {
+    "candidates": 3
+  },
+  "Colossal Squid": {
+    "candidates": 3
+  },
+  "Common Cuttlefish": {
+    "candidates": 3
+  },
+  "Flamboyant Cuttlefish": {
+    "candidates": 1
+  },
+  "Chambered Nautilus": {
+    "candidates": 3
+  },
+  "Japanese Spider Crab": {
+    "candidates": 3
+  },
+  "American Lobster": {
+    "candidates": 3
+  },
+  "European Lobster": {
+    "candidates": 3
+  },
+  "Coconut Crab": {
+    "candidates": 3
+  },
+  "Red King Crab": {
+    "candidates": 3
+  },
+  "Peacock Mantis Shrimp": {
+    "candidates": 3
+  },
+  "Atlantic Horseshoe Crab": {
+    "candidates": 3
+  },
+  "Crown-of-thorns Starfish": {
+    "candidates": 3
+  },
+  "Sunflower Sea Star": {
+    "candidates": 3
+  },
+  "Giant Clam": {
+    "candidates": 3
+  },
+  "Portuguese Man o' War": {
+    "candidates": 3
+  },
+  "Lion's Mane Jellyfish": {
+    "candidates": 3
+  },
+  "Moon Jellyfish": {
+    "candidates": 3
+  },
+  "Australian Box Jellyfish": {
+    "candidates": 1
+  },
+  "Blue Glaucus": {
+    "candidates": 3
+  },
+  "Giant Isopod": {
+    "candidates": 3
   }
 }
