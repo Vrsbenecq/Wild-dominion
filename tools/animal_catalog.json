@@ -1,0 +1,2002 @@
+[
+  {
+    "name": "African Lion",
+    "taxon": "Panthera leo"
+  },
+  {
+    "name": "Cheetah",
+    "taxon": "Acinonyx jubatus"
+  },
+  {
+    "name": "African Elephant",
+    "taxon": "Loxodonta africana"
+  },
+  {
+    "name": "Giraffe",
+    "taxon": "Giraffa"
+  },
+  {
+    "name": "Spotted Hyena",
+    "taxon": "Crocuta crocuta"
+  },
+  {
+    "name": "White Rhinoceros",
+    "taxon": "Ceratotherium simum"
+  },
+  {
+    "name": "Black Rhinoceros",
+    "taxon": "Diceros bicornis"
+  },
+  {
+    "name": "Plains Zebra",
+    "taxon": "Equus quagga"
+  },
+  {
+    "name": "Meerkat",
+    "taxon": "Suricata suricatta"
+  },
+  {
+    "name": "African Buffalo",
+    "taxon": "Syncerus caffer"
+  },
+  {
+    "name": "Secretary Bird",
+    "taxon": "Sagittarius serpentarius"
+  },
+  {
+    "name": "Ostrich",
+    "taxon": "Struthio camelus"
+  },
+  {
+    "name": "Honey Badger",
+    "taxon": "Mellivora capensis"
+  },
+  {
+    "name": "Gray Wolf",
+    "taxon": "Canis lupus"
+  },
+  {
+    "name": "Brown Bear",
+    "taxon": "Ursus arctos"
+  },
+  {
+    "name": "Red Fox",
+    "taxon": "Vulpes vulpes"
+  },
+  {
+    "name": "Eurasian Lynx",
+    "taxon": "Lynx lynx"
+  },
+  {
+    "name": "Red Deer",
+    "taxon": "Cervus elaphus"
+  },
+  {
+    "name": "Wild Boar",
+    "taxon": "Sus scrofa"
+  },
+  {
+    "name": "European Badger",
+    "taxon": "Meles meles"
+  },
+  {
+    "name": "Moose",
+    "taxon": "Alces alces"
+  },
+  {
+    "name": "Raccoon",
+    "taxon": "Procyon lotor"
+  },
+  {
+    "name": "Great Horned Owl",
+    "taxon": "Bubo virginianus"
+  },
+  {
+    "name": "Red Squirrel",
+    "taxon": "Sciurus vulgaris"
+  },
+  {
+    "name": "American Black Bear",
+    "taxon": "Ursus americanus"
+  },
+  {
+    "name": "Bengal Tiger",
+    "taxon": "Panthera tigris tigris"
+  },
+  {
+    "name": "Jaguar",
+    "taxon": "Panthera onca"
+  },
+  {
+    "name": "Western Gorilla",
+    "taxon": "Gorilla gorilla"
+  },
+  {
+    "name": "Orangutan",
+    "taxon": "Pongo"
+  },
+  {
+    "name": "Chimpanzee",
+    "taxon": "Pan troglodytes"
+  },
+  {
+    "name": "Sloth",
+    "taxon": "Bradypus"
+  },
+  {
+    "name": "Okapi",
+    "taxon": "Okapia johnstoni"
+  },
+  {
+    "name": "Tapir",
+    "taxon": "Tapirus"
+  },
+  {
+    "name": "Harpy Eagle",
+    "taxon": "Harpia harpyja"
+  },
+  {
+    "name": "Green Anaconda",
+    "taxon": "Eunectes murinus"
+  },
+  {
+    "name": "Poison Dart Frog",
+    "taxon": "Dendrobatidae"
+  },
+  {
+    "name": "Toucan",
+    "taxon": "Ramphastidae"
+  },
+  {
+    "name": "Clouded Leopard",
+    "taxon": "Neofelis nebulosa"
+  },
+  {
+    "name": "Orca",
+    "taxon": "Orcinus orca"
+  },
+  {
+    "name": "Great White Shark",
+    "taxon": "Carcharodon carcharias"
+  },
+  {
+    "name": "Blue Whale",
+    "taxon": "Balaenoptera musculus"
+  },
+  {
+    "name": "Humpback Whale",
+    "taxon": "Megaptera novaeangliae"
+  },
+  {
+    "name": "Bottlenose Dolphin",
+    "taxon": "Tursiops truncatus"
+  },
+  {
+    "name": "Giant Pacific Octopus",
+    "taxon": "Enteroctopus dofleini"
+  },
+  {
+    "name": "Manta Ray",
+    "taxon": "Mobula birostris"
+  },
+  {
+    "name": "Sea Turtle",
+    "taxon": "Chelonia mydas"
+  },
+  {
+    "name": "Hammerhead Shark",
+    "taxon": "Sphyrnidae"
+  },
+  {
+    "name": "Swordfish",
+    "taxon": "Xiphias gladius"
+  },
+  {
+    "name": "Great Barracuda",
+    "taxon": "Sphyraena barracuda"
+  },
+  {
+    "name": "Sea Otter",
+    "taxon": "Enhydra lutris"
+  },
+  {
+    "name": "Walrus",
+    "taxon": "Odobenus rosmarus"
+  },
+  {
+    "name": "Polar Bear",
+    "taxon": "Ursus maritimus"
+  },
+  {
+    "name": "Arctic Fox",
+    "taxon": "Vulpes lagopus"
+  },
+  {
+    "name": "Arctic Hare",
+    "taxon": "Lepus arcticus"
+  },
+  {
+    "name": "Musk Ox",
+    "taxon": "Ovibos moschatus"
+  },
+  {
+    "name": "Reindeer",
+    "taxon": "Rangifer tarandus"
+  },
+  {
+    "name": "Snowy Owl",
+    "taxon": "Bubo scandiacus"
+  },
+  {
+    "name": "Narwhal",
+    "taxon": "Monodon monoceros"
+  },
+  {
+    "name": "Beluga Whale",
+    "taxon": "Delphinapterus leucas"
+  },
+  {
+    "name": "Harbor Seal",
+    "taxon": "Phoca vitulina"
+  },
+  {
+    "name": "Emperor Penguin",
+    "taxon": "Aptenodytes forsteri"
+  },
+  {
+    "name": "Leopard Seal",
+    "taxon": "Hydrurga leptonyx"
+  },
+  {
+    "name": "Arctic Tern",
+    "taxon": "Sterna paradisaea"
+  },
+  {
+    "name": "Dromedary Camel",
+    "taxon": "Camelus dromedarius"
+  },
+  {
+    "name": "Fennec Fox",
+    "taxon": "Vulpes zerda"
+  },
+  {
+    "name": "Deathstalker Scorpion",
+    "taxon": "Leiurus quinquestriatus"
+  },
+  {
+    "name": "Sidewinder",
+    "taxon": "Crotalus cerastes"
+  },
+  {
+    "name": "Desert Tortoise",
+    "taxon": "Gopherus agassizii"
+  },
+  {
+    "name": "Gila Monster",
+    "taxon": "Heloderma suspectum"
+  },
+  {
+    "name": "Addax",
+    "taxon": "Addax nasomaculatus"
+  },
+  {
+    "name": "Caracal",
+    "taxon": "Caracal caracal"
+  },
+  {
+    "name": "Sand Cat",
+    "taxon": "Felis margarita"
+  },
+  {
+    "name": "Jerboa",
+    "taxon": "Jaculus"
+  },
+  {
+    "name": "Greater Roadrunner",
+    "taxon": "Geococcyx californianus"
+  },
+  {
+    "name": "Thorny Devil",
+    "taxon": "Moloch horridus"
+  },
+  {
+    "name": "Snow Leopard",
+    "taxon": "Panthera uncia"
+  },
+  {
+    "name": "Golden Eagle",
+    "taxon": "Aquila chrysaetos"
+  },
+  {
+    "name": "Alpine Ibex",
+    "taxon": "Capra ibex"
+  },
+  {
+    "name": "Mountain Goat",
+    "taxon": "Oreamnos americanus"
+  },
+  {
+    "name": "Bighorn Sheep",
+    "taxon": "Ovis canadensis"
+  },
+  {
+    "name": "Pika",
+    "taxon": "Ochotona"
+  },
+  {
+    "name": "Andean Condor",
+    "taxon": "Vultur gryphus"
+  },
+  {
+    "name": "Puma",
+    "taxon": "Puma concolor"
+  },
+  {
+    "name": "Red Panda",
+    "taxon": "Ailurus fulgens"
+  },
+  {
+    "name": "Himalayan Tahr",
+    "taxon": "Hemitragus jemlahicus"
+  },
+  {
+    "name": "Chinchilla",
+    "taxon": "Chinchilla"
+  },
+  {
+    "name": "Peregrine Falcon",
+    "taxon": "Falco peregrinus"
+  },
+  {
+    "name": "Saltwater Crocodile",
+    "taxon": "Crocodylus porosus"
+  },
+  {
+    "name": "Nile Crocodile",
+    "taxon": "Crocodylus niloticus"
+  },
+  {
+    "name": "Hippopotamus",
+    "taxon": "Hippopotamus amphibius"
+  },
+  {
+    "name": "American Alligator",
+    "taxon": "Alligator mississippiensis"
+  },
+  {
+    "name": "Capybara",
+    "taxon": "Hydrochoerus hydrochaeris"
+  },
+  {
+    "name": "Beaver",
+    "taxon": "Castor"
+  },
+  {
+    "name": "Platypus",
+    "taxon": "Ornithorhynchus anatinus"
+  },
+  {
+    "name": "Flamingo",
+    "taxon": "Phoenicopterus"
+  },
+  {
+    "name": "Great Blue Heron",
+    "taxon": "Ardea herodias"
+  },
+  {
+    "name": "Water Buffalo",
+    "taxon": "Bubalus bubalis"
+  },
+  {
+    "name": "Komodo Dragon",
+    "taxon": "Varanus komodoensis"
+  },
+  {
+    "name": "King Cobra",
+    "taxon": "Ophiophagus hannah"
+  },
+  {
+    "name": "Rhinoceros Beetle",
+    "taxon": "Dynastinae"
+  },
+  {
+    "name": "European Hedgehog",
+    "taxon": "Erinaceus europaeus"
+  },
+  {
+    "name": "European Rabbit",
+    "taxon": "Oryctolagus cuniculus"
+  },
+  {
+    "name": "European Hare",
+    "taxon": "Lepus europaeus"
+  },
+  {
+    "name": "European Polecat",
+    "taxon": "Mustela putorius"
+  },
+  {
+    "name": "Stoat",
+    "taxon": "Mustela erminea"
+  },
+  {
+    "name": "Least Weasel",
+    "taxon": "Mustela nivalis"
+  },
+  {
+    "name": "Pine Marten",
+    "taxon": "Martes martes"
+  },
+  {
+    "name": "Stone Marten",
+    "taxon": "Martes foina"
+  },
+  {
+    "name": "European Mink",
+    "taxon": "Mustela lutreola"
+  },
+  {
+    "name": "American Mink",
+    "taxon": "Neogale vison"
+  },
+  {
+    "name": "Eastern Chipmunk",
+    "taxon": "Tamias striatus"
+  },
+  {
+    "name": "Eastern Gray Squirrel",
+    "taxon": "Sciurus carolinensis"
+  },
+  {
+    "name": "Southern Flying Squirrel",
+    "taxon": "Glaucomys volans"
+  },
+  {
+    "name": "Woodchuck",
+    "taxon": "Marmota monax"
+  },
+  {
+    "name": "Virginia Opossum",
+    "taxon": "Didelphis virginiana"
+  },
+  {
+    "name": "Striped Skunk",
+    "taxon": "Mephitis mephitis"
+  },
+  {
+    "name": "North American Porcupine",
+    "taxon": "Erethizon dorsatum"
+  },
+  {
+    "name": "European Mole",
+    "taxon": "Talpa europaea"
+  },
+  {
+    "name": "Common Shrew",
+    "taxon": "Sorex araneus"
+  },
+  {
+    "name": "Hazel Dormouse",
+    "taxon": "Muscardinus avellanarius"
+  },
+  {
+    "name": "Wolverine",
+    "taxon": "Gulo gulo"
+  },
+  {
+    "name": "Bobcat",
+    "taxon": "Lynx rufus"
+  },
+  {
+    "name": "Canada Lynx",
+    "taxon": "Lynx canadensis"
+  },
+  {
+    "name": "Coyote",
+    "taxon": "Canis latrans"
+  },
+  {
+    "name": "Red Wolf",
+    "taxon": "Canis rufus"
+  },
+  {
+    "name": "Golden Jackal",
+    "taxon": "Canis aureus"
+  },
+  {
+    "name": "Raccoon Dog",
+    "taxon": "Nyctereutes procyonoides"
+  },
+  {
+    "name": "European Wildcat",
+    "taxon": "Felis silvestris"
+  },
+  {
+    "name": "Asian Black Bear",
+    "taxon": "Ursus thibetanus"
+  },
+  {
+    "name": "American Marten",
+    "taxon": "Martes americana"
+  },
+  {
+    "name": "Impala",
+    "taxon": "Aepyceros melampus"
+  },
+  {
+    "name": "Springbok",
+    "taxon": "Antidorcas marsupialis"
+  },
+  {
+    "name": "Blue Wildebeest",
+    "taxon": "Connochaetes taurinus"
+  },
+  {
+    "name": "Black Wildebeest",
+    "taxon": "Connochaetes gnou"
+  },
+  {
+    "name": "Common Eland",
+    "taxon": "Tragelaphus oryx"
+  },
+  {
+    "name": "Greater Kudu",
+    "taxon": "Tragelaphus strepsiceros"
+  },
+  {
+    "name": "Lesser Kudu",
+    "taxon": "Tragelaphus imberbis"
+  },
+  {
+    "name": "Sable Antelope",
+    "taxon": "Hippotragus niger"
+  },
+  {
+    "name": "Roan Antelope",
+    "taxon": "Hippotragus equinus"
+  },
+  {
+    "name": "Topi",
+    "taxon": "Damaliscus lunatus"
+  },
+  {
+    "name": "Blesbok",
+    "taxon": "Damaliscus pygargus"
+  },
+  {
+    "name": "Waterbuck",
+    "taxon": "Kobus ellipsiprymnus"
+  },
+  {
+    "name": "Gerenuk",
+    "taxon": "Litocranius walleri"
+  },
+  {
+    "name": "Grant's Gazelle",
+    "taxon": "Nanger granti"
+  },
+  {
+    "name": "Thomson's Gazelle",
+    "taxon": "Eudorcas thomsonii"
+  },
+  {
+    "name": "African Wild Dog",
+    "taxon": "Lycaon pictus"
+  },
+  {
+    "name": "Serval",
+    "taxon": "Leptailurus serval"
+  },
+  {
+    "name": "Aardwolf",
+    "taxon": "Proteles cristata"
+  },
+  {
+    "name": "Black-backed Jackal",
+    "taxon": "Lupulella mesomelas"
+  },
+  {
+    "name": "Striped Hyena",
+    "taxon": "Hyaena hyaena"
+  },
+  {
+    "name": "Fossa",
+    "taxon": "Cryptoprocta ferox"
+  },
+  {
+    "name": "Binturong",
+    "taxon": "Arctictis binturong"
+  },
+  {
+    "name": "Ring-tailed Lemur",
+    "taxon": "Lemur catta"
+  },
+  {
+    "name": "Indri",
+    "taxon": "Indri indri"
+  },
+  {
+    "name": "Aye-aye",
+    "taxon": "Daubentonia madagascariensis"
+  },
+  {
+    "name": "Siamang",
+    "taxon": "Symphalangus syndactylus"
+  },
+  {
+    "name": "Proboscis Monkey",
+    "taxon": "Nasalis larvatus"
+  },
+  {
+    "name": "Mandrill",
+    "taxon": "Mandrillus sphinx"
+  },
+  {
+    "name": "Drill",
+    "taxon": "Mandrillus leucophaeus"
+  },
+  {
+    "name": "Japanese Macaque",
+    "taxon": "Macaca fuscata"
+  },
+  {
+    "name": "Golden Snub-nosed Monkey",
+    "taxon": "Rhinopithecus roxellana"
+  },
+  {
+    "name": "Black Howler",
+    "taxon": "Alouatta caraya"
+  },
+  {
+    "name": "Common Marmoset",
+    "taxon": "Callithrix jacchus"
+  },
+  {
+    "name": "Golden Lion Tamarin",
+    "taxon": "Leontopithecus rosalia"
+  },
+  {
+    "name": "White-faced Capuchin",
+    "taxon": "Cebus capucinus"
+  },
+  {
+    "name": "Kinkajou",
+    "taxon": "Potos flavus"
+  },
+  {
+    "name": "Coquerel's Sifaka",
+    "taxon": "Propithecus coquereli"
+  },
+  {
+    "name": "Philippine Tarsier",
+    "taxon": "Carlito syrichta"
+  },
+  {
+    "name": "Slow Loris",
+    "taxon": "Nycticebus coucang"
+  },
+  {
+    "name": "Sugar Glider",
+    "taxon": "Petaurus breviceps"
+  },
+  {
+    "name": "Malayan Sun Bear",
+    "taxon": "Helarctos malayanus"
+  },
+  {
+    "name": "Sloth Bear",
+    "taxon": "Melursus ursinus"
+  },
+  {
+    "name": "Spectacled Bear",
+    "taxon": "Tremarctos ornatus"
+  },
+  {
+    "name": "Giant Panda",
+    "taxon": "Ailuropoda melanoleuca"
+  },
+  {
+    "name": "Banteng",
+    "taxon": "Bos javanicus"
+  },
+  {
+    "name": "Gaur",
+    "taxon": "Bos gaurus"
+  },
+  {
+    "name": "Babirusa",
+    "taxon": "Babyrousa celebensis"
+  },
+  {
+    "name": "Collared Peccary",
+    "taxon": "Pecari tajacu"
+  },
+  {
+    "name": "Giant Anteater",
+    "taxon": "Myrmecophaga tridactyla"
+  },
+  {
+    "name": "Giant Armadillo",
+    "taxon": "Priodontes maximus"
+  },
+  {
+    "name": "Takin",
+    "taxon": "Budorcas taxicolor"
+  },
+  {
+    "name": "Markhor",
+    "taxon": "Capra falconeri"
+  },
+  {
+    "name": "Argali",
+    "taxon": "Ovis ammon"
+  },
+  {
+    "name": "Chamois",
+    "taxon": "Rupicapra rupicapra"
+  },
+  {
+    "name": "Vicuña",
+    "taxon": "Vicugna vicugna"
+  },
+  {
+    "name": "Guanaco",
+    "taxon": "Lama guanicoe"
+  },
+  {
+    "name": "Pronghorn",
+    "taxon": "Antilocapra americana"
+  },
+  {
+    "name": "Siberian Ibex",
+    "taxon": "Capra sibirica"
+  },
+  {
+    "name": "Himalayan Marmot",
+    "taxon": "Marmota himalayana"
+  },
+  {
+    "name": "Gelada",
+    "taxon": "Theropithecus gelada"
+  },
+  {
+    "name": "Dugong",
+    "taxon": "Dugong dugon"
+  },
+  {
+    "name": "West Indian Manatee",
+    "taxon": "Trichechus manatus"
+  },
+  {
+    "name": "Sperm Whale",
+    "taxon": "Physeter macrocephalus"
+  },
+  {
+    "name": "Fin Whale",
+    "taxon": "Balaenoptera physalus"
+  },
+  {
+    "name": "Minke Whale",
+    "taxon": "Balaenoptera acutorostrata"
+  },
+  {
+    "name": "Common Dolphin",
+    "taxon": "Delphinus delphis"
+  },
+  {
+    "name": "Harbour Porpoise",
+    "taxon": "Phocoena phocoena"
+  },
+  {
+    "name": "California Sea Lion",
+    "taxon": "Zalophus californianus"
+  },
+  {
+    "name": "Northern Elephant Seal",
+    "taxon": "Mirounga angustirostris"
+  },
+  {
+    "name": "Southern Elephant Seal",
+    "taxon": "Mirounga leonina"
+  },
+  {
+    "name": "European Robin",
+    "taxon": "Erithacus rubecula"
+  },
+  {
+    "name": "Common Blackbird",
+    "taxon": "Turdus merula"
+  },
+  {
+    "name": "Song Thrush",
+    "taxon": "Turdus philomelos"
+  },
+  {
+    "name": "Eurasian Jay",
+    "taxon": "Garrulus glandarius"
+  },
+  {
+    "name": "Common Raven",
+    "taxon": "Corvus corax"
+  },
+  {
+    "name": "Carrion Crow",
+    "taxon": "Corvus corone"
+  },
+  {
+    "name": "Eurasian Magpie",
+    "taxon": "Pica pica"
+  },
+  {
+    "name": "Great Tit",
+    "taxon": "Parus major"
+  },
+  {
+    "name": "Blue Tit",
+    "taxon": "Cyanistes caeruleus"
+  },
+  {
+    "name": "Eurasian Nuthatch",
+    "taxon": "Sitta europaea"
+  },
+  {
+    "name": "Great Spotted Woodpecker",
+    "taxon": "Dendrocopos major"
+  },
+  {
+    "name": "Black Woodpecker",
+    "taxon": "Dryocopus martius"
+  },
+  {
+    "name": "Pileated Woodpecker",
+    "taxon": "Dryocopus pileatus"
+  },
+  {
+    "name": "Northern Cardinal",
+    "taxon": "Cardinalis cardinalis"
+  },
+  {
+    "name": "Blue Jay",
+    "taxon": "Cyanocitta cristata"
+  },
+  {
+    "name": "American Robin",
+    "taxon": "Turdus migratorius"
+  },
+  {
+    "name": "Common Chaffinch",
+    "taxon": "Fringilla coelebs"
+  },
+  {
+    "name": "European Goldfinch",
+    "taxon": "Carduelis carduelis"
+  },
+  {
+    "name": "Bohemian Waxwing",
+    "taxon": "Bombycilla garrulus"
+  },
+  {
+    "name": "Common Cuckoo",
+    "taxon": "Cuculus canorus"
+  },
+  {
+    "name": "Tawny Owl",
+    "taxon": "Strix aluco"
+  },
+  {
+    "name": "Barn Owl",
+    "taxon": "Tyto alba"
+  },
+  {
+    "name": "Long-eared Owl",
+    "taxon": "Asio otus"
+  },
+  {
+    "name": "Eurasian Eagle-Owl",
+    "taxon": "Bubo bubo"
+  },
+  {
+    "name": "Northern Goshawk",
+    "taxon": "Astur gentilis"
+  },
+  {
+    "name": "Red-tailed Hawk",
+    "taxon": "Buteo jamaicensis"
+  },
+  {
+    "name": "Common Buzzard",
+    "taxon": "Buteo buteo"
+  },
+  {
+    "name": "Eurasian Sparrowhawk",
+    "taxon": "Accipiter nisus"
+  },
+  {
+    "name": "Cooper's Hawk",
+    "taxon": "Astur cooperii"
+  },
+  {
+    "name": "Barred Owl",
+    "taxon": "Strix varia"
+  },
+  {
+    "name": "Scarlet Macaw",
+    "taxon": "Ara macao"
+  },
+  {
+    "name": "Blue-and-yellow Macaw",
+    "taxon": "Ara ararauna"
+  },
+  {
+    "name": "Hyacinth Macaw",
+    "taxon": "Anodorhynchus hyacinthinus"
+  },
+  {
+    "name": "African Grey Parrot",
+    "taxon": "Psittacus erithacus"
+  },
+  {
+    "name": "Sulphur-crested Cockatoo",
+    "taxon": "Cacatua galerita"
+  },
+  {
+    "name": "Rainbow Lorikeet",
+    "taxon": "Trichoglossus moluccanus"
+  },
+  {
+    "name": "Kakapo",
+    "taxon": "Strigops habroptila"
+  },
+  {
+    "name": "Kea",
+    "taxon": "Nestor notabilis"
+  },
+  {
+    "name": "Victoria Crowned Pigeon",
+    "taxon": "Goura victoria"
+  },
+  {
+    "name": "Nicobar Pigeon",
+    "taxon": "Caloenas nicobarica"
+  },
+  {
+    "name": "Resplendent Quetzal",
+    "taxon": "Pharomachrus mocinno"
+  },
+  {
+    "name": "Great Hornbill",
+    "taxon": "Buceros bicornis"
+  },
+  {
+    "name": "Rhinoceros Hornbill",
+    "taxon": "Buceros rhinoceros"
+  },
+  {
+    "name": "King Bird-of-paradise",
+    "taxon": "Cicinnurus regius"
+  },
+  {
+    "name": "Greater Bird-of-paradise",
+    "taxon": "Paradisaea apoda"
+  },
+  {
+    "name": "Superb Lyrebird",
+    "taxon": "Menura novaehollandiae"
+  },
+  {
+    "name": "Golden Pheasant",
+    "taxon": "Chrysolophus pictus"
+  },
+  {
+    "name": "Lady Amherst's Pheasant",
+    "taxon": "Chrysolophus amherstiae"
+  },
+  {
+    "name": "Indian Peafowl",
+    "taxon": "Pavo cristatus"
+  },
+  {
+    "name": "Helmeted Guineafowl",
+    "taxon": "Numida meleagris"
+  },
+  {
+    "name": "Southern Cassowary",
+    "taxon": "Casuarius casuarius"
+  },
+  {
+    "name": "Emu",
+    "taxon": "Dromaius novaehollandiae"
+  },
+  {
+    "name": "Greater Rhea",
+    "taxon": "Rhea americana"
+  },
+  {
+    "name": "Kori Bustard",
+    "taxon": "Ardeotis kori"
+  },
+  {
+    "name": "Great Bustard",
+    "taxon": "Otis tarda"
+  },
+  {
+    "name": "Southern Ground Hornbill",
+    "taxon": "Bucorvus leadbeateri"
+  },
+  {
+    "name": "Red-legged Seriema",
+    "taxon": "Cariama cristata"
+  },
+  {
+    "name": "Crested Francolin",
+    "taxon": "Ortygornis sephaena"
+  },
+  {
+    "name": "Wild Turkey",
+    "taxon": "Meleagris gallopavo"
+  },
+  {
+    "name": "Common Pheasant",
+    "taxon": "Phasianus colchicus"
+  },
+  {
+    "name": "Shoebill",
+    "taxon": "Balaeniceps rex"
+  },
+  {
+    "name": "Marabou Stork",
+    "taxon": "Leptoptilos crumenifer"
+  },
+  {
+    "name": "White Stork",
+    "taxon": "Ciconia ciconia"
+  },
+  {
+    "name": "Black Stork",
+    "taxon": "Ciconia nigra"
+  },
+  {
+    "name": "Great Egret",
+    "taxon": "Ardea alba"
+  },
+  {
+    "name": "Little Egret",
+    "taxon": "Egretta garzetta"
+  },
+  {
+    "name": "Grey Heron",
+    "taxon": "Ardea cinerea"
+  },
+  {
+    "name": "Scarlet Ibis",
+    "taxon": "Eudocimus ruber"
+  },
+  {
+    "name": "African Sacred Ibis",
+    "taxon": "Threskiornis aethiopicus"
+  },
+  {
+    "name": "Roseate Spoonbill",
+    "taxon": "Platalea ajaja"
+  },
+  {
+    "name": "Mute Swan",
+    "taxon": "Cygnus olor"
+  },
+  {
+    "name": "Whooper Swan",
+    "taxon": "Cygnus cygnus"
+  },
+  {
+    "name": "Canada Goose",
+    "taxon": "Branta canadensis"
+  },
+  {
+    "name": "Mallard",
+    "taxon": "Anas platyrhynchos"
+  },
+  {
+    "name": "Mandarin Duck",
+    "taxon": "Aix galericulata"
+  },
+  {
+    "name": "Atlantic Puffin",
+    "taxon": "Fratercula arctica"
+  },
+  {
+    "name": "Tufted Puffin",
+    "taxon": "Fratercula cirrhata"
+  },
+  {
+    "name": "Wandering Albatross",
+    "taxon": "Diomedea exulans"
+  },
+  {
+    "name": "Northern Gannet",
+    "taxon": "Morus bassanus"
+  },
+  {
+    "name": "Brown Pelican",
+    "taxon": "Pelecanus occidentalis"
+  },
+  {
+    "name": "Great Cormorant",
+    "taxon": "Phalacrocorax carbo"
+  },
+  {
+    "name": "Magnificent Frigatebird",
+    "taxon": "Fregata magnificens"
+  },
+  {
+    "name": "Blue-footed Booby",
+    "taxon": "Sula nebouxii"
+  },
+  {
+    "name": "King Penguin",
+    "taxon": "Aptenodytes patagonicus"
+  },
+  {
+    "name": "Adélie Penguin",
+    "taxon": "Pygoscelis adeliae"
+  },
+  {
+    "name": "Bearded Vulture",
+    "taxon": "Gypaetus barbatus"
+  },
+  {
+    "name": "Griffon Vulture",
+    "taxon": "Gyps fulvus"
+  },
+  {
+    "name": "California Condor",
+    "taxon": "Gymnogyps californianus"
+  },
+  {
+    "name": "Steller's Sea Eagle",
+    "taxon": "Haliaeetus pelagicus"
+  },
+  {
+    "name": "Bald Eagle",
+    "taxon": "Haliaeetus leucocephalus"
+  },
+  {
+    "name": "Reticulated Python",
+    "taxon": "Malayopython reticulatus"
+  },
+  {
+    "name": "Burmese Python",
+    "taxon": "Python bivittatus"
+  },
+  {
+    "name": "Ball Python",
+    "taxon": "Python regius"
+  },
+  {
+    "name": "African Rock Python",
+    "taxon": "Python sebae"
+  },
+  {
+    "name": "Boa Constrictor",
+    "taxon": "Boa constrictor"
+  },
+  {
+    "name": "Emerald Tree Boa",
+    "taxon": "Corallus caninus"
+  },
+  {
+    "name": "Green Tree Python",
+    "taxon": "Morelia viridis"
+  },
+  {
+    "name": "Gaboon Viper",
+    "taxon": "Bitis gabonica"
+  },
+  {
+    "name": "Bushmaster",
+    "taxon": "Lachesis muta"
+  },
+  {
+    "name": "Eyelash Viper",
+    "taxon": "Bothriechis schlegelii"
+  },
+  {
+    "name": "Black Mamba",
+    "taxon": "Dendroaspis polylepis"
+  },
+  {
+    "name": "Eastern Green Mamba",
+    "taxon": "Dendroaspis angusticeps"
+  },
+  {
+    "name": "Boomslang",
+    "taxon": "Dispholidus typus"
+  },
+  {
+    "name": "Indian Cobra",
+    "taxon": "Naja naja"
+  },
+  {
+    "name": "Monocled Cobra",
+    "taxon": "Naja kaouthia"
+  },
+  {
+    "name": "Green Iguana",
+    "taxon": "Iguana iguana"
+  },
+  {
+    "name": "Marine Iguana",
+    "taxon": "Amblyrhynchus cristatus"
+  },
+  {
+    "name": "Panther Chameleon",
+    "taxon": "Furcifer pardalis"
+  },
+  {
+    "name": "Veiled Chameleon",
+    "taxon": "Chamaeleo calyptratus"
+  },
+  {
+    "name": "Jackson's Chameleon",
+    "taxon": "Trioceros jacksonii"
+  },
+  {
+    "name": "Tokay Gecko",
+    "taxon": "Gekko gecko"
+  },
+  {
+    "name": "Crested Gecko",
+    "taxon": "Correlophus ciliatus"
+  },
+  {
+    "name": "Giant Day Gecko",
+    "taxon": "Phelsuma grandis"
+  },
+  {
+    "name": "Satanic Leaf-tailed Gecko",
+    "taxon": "Uroplatus phantasticus"
+  },
+  {
+    "name": "Common Basilisk",
+    "taxon": "Basiliscus basiliscus"
+  },
+  {
+    "name": "Inland Taipan",
+    "taxon": "Oxyuranus microlepidotus"
+  },
+  {
+    "name": "Coastal Taipan",
+    "taxon": "Oxyuranus scutellatus"
+  },
+  {
+    "name": "Eastern Brown Snake",
+    "taxon": "Pseudonaja textilis"
+  },
+  {
+    "name": "Western Diamondback Rattlesnake",
+    "taxon": "Crotalus atrox"
+  },
+  {
+    "name": "Eastern Diamondback Rattlesnake",
+    "taxon": "Crotalus adamanteus"
+  },
+  {
+    "name": "Puff Adder",
+    "taxon": "Bitis arietans"
+  },
+  {
+    "name": "Horned Viper",
+    "taxon": "Cerastes cerastes"
+  },
+  {
+    "name": "Saw-scaled Viper",
+    "taxon": "Echis carinatus"
+  },
+  {
+    "name": "Leopard Gecko",
+    "taxon": "Eublepharis macularius"
+  },
+  {
+    "name": "Central Bearded Dragon",
+    "taxon": "Pogona vitticeps"
+  },
+  {
+    "name": "Frilled Lizard",
+    "taxon": "Chlamydosaurus kingii"
+  },
+  {
+    "name": "Common Chuckwalla",
+    "taxon": "Sauromalus ater"
+  },
+  {
+    "name": "Desert Iguana",
+    "taxon": "Dipsosaurus dorsalis"
+  },
+  {
+    "name": "Mexican Beaded Lizard",
+    "taxon": "Heloderma horridum"
+  },
+  {
+    "name": "Sand Monitor",
+    "taxon": "Varanus gouldii"
+  },
+  {
+    "name": "Gharial",
+    "taxon": "Gavialis gangeticus"
+  },
+  {
+    "name": "False Gharial",
+    "taxon": "Tomistoma schlegelii"
+  },
+  {
+    "name": "American Crocodile",
+    "taxon": "Crocodylus acutus"
+  },
+  {
+    "name": "Mugger Crocodile",
+    "taxon": "Crocodylus palustris"
+  },
+  {
+    "name": "Morelet's Crocodile",
+    "taxon": "Crocodylus moreletii"
+  },
+  {
+    "name": "Cuban Crocodile",
+    "taxon": "Crocodylus rhombifer"
+  },
+  {
+    "name": "Chinese Alligator",
+    "taxon": "Alligator sinensis"
+  },
+  {
+    "name": "Black Caiman",
+    "taxon": "Melanosuchus niger"
+  },
+  {
+    "name": "Spectacled Caiman",
+    "taxon": "Caiman crocodilus"
+  },
+  {
+    "name": "Dwarf Caiman",
+    "taxon": "Paleosuchus palpebrosus"
+  },
+  {
+    "name": "Leatherback Turtle",
+    "taxon": "Dermochelys coriacea"
+  },
+  {
+    "name": "Hawksbill Turtle",
+    "taxon": "Eretmochelys imbricata"
+  },
+  {
+    "name": "Loggerhead Turtle",
+    "taxon": "Caretta caretta"
+  },
+  {
+    "name": "Olive Ridley Turtle",
+    "taxon": "Lepidochelys olivacea"
+  },
+  {
+    "name": "Kemp's Ridley Turtle",
+    "taxon": "Lepidochelys kempii"
+  },
+  {
+    "name": "Common Snapping Turtle",
+    "taxon": "Chelydra serpentina"
+  },
+  {
+    "name": "Alligator Snapping Turtle",
+    "taxon": "Macrochelys temminckii"
+  },
+  {
+    "name": "Eastern Box Turtle",
+    "taxon": "Terrapene carolina"
+  },
+  {
+    "name": "Galapagos Land Iguana",
+    "taxon": "Conolophus subcristatus"
+  },
+  {
+    "name": "Tuatara",
+    "taxon": "Sphenodon punctatus"
+  },
+  {
+    "name": "Axolotl",
+    "taxon": "Ambystoma mexicanum"
+  },
+  {
+    "name": "Tiger Salamander",
+    "taxon": "Ambystoma tigrinum"
+  },
+  {
+    "name": "Spotted Salamander",
+    "taxon": "Ambystoma maculatum"
+  },
+  {
+    "name": "Fire Salamander",
+    "taxon": "Salamandra salamandra"
+  },
+  {
+    "name": "Alpine Newt",
+    "taxon": "Ichthyosaura alpestris"
+  },
+  {
+    "name": "Great Crested Newt",
+    "taxon": "Triturus cristatus"
+  },
+  {
+    "name": "Smooth Newt",
+    "taxon": "Lissotriton vulgaris"
+  },
+  {
+    "name": "Eastern Newt",
+    "taxon": "Notophthalmus viridescens"
+  },
+  {
+    "name": "Japanese Giant Salamander",
+    "taxon": "Andrias japonicus"
+  },
+  {
+    "name": "Hellbender",
+    "taxon": "Cryptobranchus alleganiensis"
+  },
+  {
+    "name": "Common Mudpuppy",
+    "taxon": "Necturus maculosus"
+  },
+  {
+    "name": "Olm",
+    "taxon": "Proteus anguinus"
+  },
+  {
+    "name": "American Bullfrog",
+    "taxon": "Lithobates catesbeianus"
+  },
+  {
+    "name": "European Common Frog",
+    "taxon": "Rana temporaria"
+  },
+  {
+    "name": "Marsh Frog",
+    "taxon": "Pelophylax ridibundus"
+  },
+  {
+    "name": "Common Toad",
+    "taxon": "Bufo bufo"
+  },
+  {
+    "name": "Natterjack Toad",
+    "taxon": "Epidalea calamita"
+  },
+  {
+    "name": "Cane Toad",
+    "taxon": "Rhinella marina"
+  },
+  {
+    "name": "African Bullfrog",
+    "taxon": "Pyxicephalus adspersus"
+  },
+  {
+    "name": "Goliath Frog",
+    "taxon": "Conraua goliath"
+  },
+  {
+    "name": "Red-eyed Tree Frog",
+    "taxon": "Agalychnis callidryas"
+  },
+  {
+    "name": "White's Tree Frog",
+    "taxon": "Ranoidea caerulea"
+  },
+  {
+    "name": "Amazon Milk Frog",
+    "taxon": "Trachycephalus resinifictrix"
+  },
+  {
+    "name": "Vietnamese Mossy Frog",
+    "taxon": "Theloderma corticale"
+  },
+  {
+    "name": "Malayan Horned Frog",
+    "taxon": "Megophrys nasuta"
+  },
+  {
+    "name": "Surinam Toad",
+    "taxon": "Pipa pipa"
+  },
+  {
+    "name": "Purple Frog",
+    "taxon": "Nasikabatrachus sahyadrensis"
+  },
+  {
+    "name": "Tomato Frog",
+    "taxon": "Dyscophus antongilii"
+  },
+  {
+    "name": "Budgett's Frog",
+    "taxon": "Lepidobatrachus laevis"
+  },
+  {
+    "name": "Golden Mantella",
+    "taxon": "Mantella aurantiaca"
+  },
+  {
+    "name": "Tiger Shark",
+    "taxon": "Galeocerdo cuvier"
+  },
+  {
+    "name": "Bull Shark",
+    "taxon": "Carcharhinus leucas"
+  },
+  {
+    "name": "Whale Shark",
+    "taxon": "Rhincodon typus"
+  },
+  {
+    "name": "Basking Shark",
+    "taxon": "Cetorhinus maximus"
+  },
+  {
+    "name": "Shortfin Mako",
+    "taxon": "Isurus oxyrinchus"
+  },
+  {
+    "name": "Blue Shark",
+    "taxon": "Prionace glauca"
+  },
+  {
+    "name": "Oceanic Whitetip Shark",
+    "taxon": "Carcharhinus longimanus"
+  },
+  {
+    "name": "Blacktip Reef Shark",
+    "taxon": "Carcharhinus melanopterus"
+  },
+  {
+    "name": "Whitetip Reef Shark",
+    "taxon": "Triaenodon obesus"
+  },
+  {
+    "name": "Grey Reef Shark",
+    "taxon": "Carcharhinus amblyrhynchos"
+  },
+  {
+    "name": "Lemon Shark",
+    "taxon": "Negaprion brevirostris"
+  },
+  {
+    "name": "Nurse Shark",
+    "taxon": "Ginglymostoma cirratum"
+  },
+  {
+    "name": "Zebra Shark",
+    "taxon": "Stegostoma tigrinum"
+  },
+  {
+    "name": "Goblin Shark",
+    "taxon": "Mitsukurina owstoni"
+  },
+  {
+    "name": "Frilled Shark",
+    "taxon": "Chlamydoselachus anguineus"
+  },
+  {
+    "name": "Greenland Shark",
+    "taxon": "Somniosus microcephalus"
+  },
+  {
+    "name": "Common Thresher",
+    "taxon": "Alopias vulpinus"
+  },
+  {
+    "name": "Sand Tiger Shark",
+    "taxon": "Carcharias taurus"
+  },
+  {
+    "name": "Spotted Wobbegong",
+    "taxon": "Orectolobus maculatus"
+  },
+  {
+    "name": "Port Jackson Shark",
+    "taxon": "Heterodontus portusjacksoni"
+  },
+  {
+    "name": "Spotted Eagle Ray",
+    "taxon": "Aetobatus narinari"
+  },
+  {
+    "name": "Southern Stingray",
+    "taxon": "Hypanus americanus"
+  },
+  {
+    "name": "Blue-spotted Ribbontail Ray",
+    "taxon": "Taeniura lymma"
+  },
+  {
+    "name": "Smalltooth Sawfish",
+    "taxon": "Pristis pectinata"
+  },
+  {
+    "name": "Electric Ray",
+    "taxon": "Torpedo marmorata"
+  },
+  {
+    "name": "Ocean Sunfish",
+    "taxon": "Mola mola"
+  },
+  {
+    "name": "Opah",
+    "taxon": "Lampris guttatus"
+  },
+  {
+    "name": "Atlantic Bluefin Tuna",
+    "taxon": "Thunnus thynnus"
+  },
+  {
+    "name": "Yellowfin Tuna",
+    "taxon": "Thunnus albacares"
+  },
+  {
+    "name": "Atlantic Sailfish",
+    "taxon": "Istiophorus albicans"
+  },
+  {
+    "name": "Blue Marlin",
+    "taxon": "Makaira nigricans"
+  },
+  {
+    "name": "Mahi-mahi",
+    "taxon": "Coryphaena hippurus"
+  },
+  {
+    "name": "Wahoo",
+    "taxon": "Acanthocybium solandri"
+  },
+  {
+    "name": "Atlantic Cod",
+    "taxon": "Gadus morhua"
+  },
+  {
+    "name": "Atlantic Halibut",
+    "taxon": "Hippoglossus hippoglossus"
+  },
+  {
+    "name": "Atlantic Herring",
+    "taxon": "Clupea harengus"
+  },
+  {
+    "name": "European Anchovy",
+    "taxon": "Engraulis encrasicolus"
+  },
+  {
+    "name": "Atlantic Mackerel",
+    "taxon": "Scomber scombrus"
+  },
+  {
+    "name": "Giant Oarfish",
+    "taxon": "Regalecus glesne"
+  },
+  {
+    "name": "Coelacanth",
+    "taxon": "Latimeria chalumnae"
+  },
+  {
+    "name": "Goliath Grouper",
+    "taxon": "Epinephelus itajara"
+  },
+  {
+    "name": "Giant Moray",
+    "taxon": "Gymnothorax javanicus"
+  },
+  {
+    "name": "Green Moray",
+    "taxon": "Gymnothorax funebris"
+  },
+  {
+    "name": "Red Lionfish",
+    "taxon": "Pterois volitans"
+  },
+  {
+    "name": "Reef Stonefish",
+    "taxon": "Synanceia verrucosa"
+  },
+  {
+    "name": "Atlantic Wolffish",
+    "taxon": "Anarhichas lupus"
+  },
+  {
+    "name": "Giant Trevally",
+    "taxon": "Caranx ignobilis"
+  },
+  {
+    "name": "Fangtooth",
+    "taxon": "Anoplogaster cornuta"
+  },
+  {
+    "name": "Black Dragonfish",
+    "taxon": "Idiacanthus atlanticus"
+  },
+  {
+    "name": "Humpback Anglerfish",
+    "taxon": "Melanocetus johnsonii"
+  },
+  {
+    "name": "Ocellaris Clownfish",
+    "taxon": "Amphiprion ocellaris"
+  },
+  {
+    "name": "Blue Tang",
+    "taxon": "Paracanthurus hepatus"
+  },
+  {
+    "name": "Yellow Tang",
+    "taxon": "Zebrasoma flavescens"
+  },
+  {
+    "name": "Mandarinfish",
+    "taxon": "Synchiropus splendidus"
+  },
+  {
+    "name": "Emperor Angelfish",
+    "taxon": "Pomacanthus imperator"
+  },
+  {
+    "name": "Longsnout Seahorse",
+    "taxon": "Hippocampus reidi"
+  },
+  {
+    "name": "Leafy Seadragon",
+    "taxon": "Phycodurus eques"
+  },
+  {
+    "name": "Clown Triggerfish",
+    "taxon": "Balistoides conspicillum"
+  },
+  {
+    "name": "Porcupinefish",
+    "taxon": "Diodon holocanthus"
+  },
+  {
+    "name": "Longhorn Cowfish",
+    "taxon": "Lactoria cornuta"
+  },
+  {
+    "name": "Arapaima",
+    "taxon": "Arapaima gigas"
+  },
+  {
+    "name": "Alligator Gar",
+    "taxon": "Atractosteus spatula"
+  },
+  {
+    "name": "Northern Pike",
+    "taxon": "Esox lucius"
+  },
+  {
+    "name": "Wels Catfish",
+    "taxon": "Silurus glanis"
+  },
+  {
+    "name": "Electric Eel",
+    "taxon": "Electrophorus electricus"
+  },
+  {
+    "name": "Red-bellied Piranha",
+    "taxon": "Pygocentrus nattereri"
+  },
+  {
+    "name": "Goliath Tigerfish",
+    "taxon": "Hydrocynus goliath"
+  },
+  {
+    "name": "Mekong Giant Catfish",
+    "taxon": "Pangasianodon gigas"
+  },
+  {
+    "name": "Beluga Sturgeon",
+    "taxon": "Huso huso"
+  },
+  {
+    "name": "Atlantic Salmon",
+    "taxon": "Salmo salar"
+  },
+  {
+    "name": "Goliath Birdeater",
+    "taxon": "Theraphosa blondi"
+  },
+  {
+    "name": "Brazilian Wandering Spider",
+    "taxon": "Phoneutria nigriventer"
+  },
+  {
+    "name": "Golden Silk Orb-weaver",
+    "taxon": "Trichonephila clavipes"
+  },
+  {
+    "name": "Peacock Spider",
+    "taxon": "Maratus volans"
+  },
+  {
+    "name": "Giant Huntsman Spider",
+    "taxon": "Heteropoda maxima"
+  },
+  {
+    "name": "Mexican Red-knee Tarantula",
+    "taxon": "Brachypelma hamorii"
+  },
+  {
+    "name": "Emperor Scorpion",
+    "taxon": "Pandinus imperator"
+  },
+  {
+    "name": "Asian Forest Scorpion",
+    "taxon": "Heterometrus spinifer"
+  },
+  {
+    "name": "Giant Centipede",
+    "taxon": "Scolopendra gigantea"
+  },
+  {
+    "name": "Giant African Millipede",
+    "taxon": "Archispirostreptus gigas"
+  },
+  {
+    "name": "Orchid Mantis",
+    "taxon": "Hymenopus coronatus"
+  },
+  {
+    "name": "Devil's Flower Mantis",
+    "taxon": "Idolomantis diabolica"
+  },
+  {
+    "name": "European Mantis",
+    "taxon": "Mantis religiosa"
+  },
+  {
+    "name": "Atlas Moth",
+    "taxon": "Attacus atlas"
+  },
+  {
+    "name": "Luna Moth",
+    "taxon": "Actias luna"
+  },
+  {
+    "name": "Blue Morpho",
+    "taxon": "Morpho menelaus"
+  },
+  {
+    "name": "Monarch Butterfly",
+    "taxon": "Danaus plexippus"
+  },
+  {
+    "name": "Glasswing Butterfly",
+    "taxon": "Greta oto"
+  },
+  {
+    "name": "Hercules Beetle",
+    "taxon": "Dynastes hercules"
+  },
+  {
+    "name": "Goliath Beetle",
+    "taxon": "Goliathus goliatus"
+  },
+  {
+    "name": "Titan Beetle",
+    "taxon": "Titanus giganteus"
+  },
+  {
+    "name": "Giant Stag Beetle",
+    "taxon": "Dorcus titanus"
+  },
+  {
+    "name": "Bullet Ant",
+    "taxon": "Paraponera clavata"
+  },
+  {
+    "name": "Leafcutter Ant",
+    "taxon": "Atta cephalotes"
+  },
+  {
+    "name": "Giant Water Bug",
+    "taxon": "Lethocerus americanus"
+  },
+  {
+    "name": "Common Octopus",
+    "taxon": "Octopus vulgaris"
+  },
+  {
+    "name": "Blue-ringed Octopus",
+    "taxon": "Hapalochlaena maculosa"
+  },
+  {
+    "name": "Mimic Octopus",
+    "taxon": "Thaumoctopus mimicus"
+  },
+  {
+    "name": "Vampire Squid",
+    "taxon": "Vampyroteuthis infernalis"
+  },
+  {
+    "name": "Giant Squid",
+    "taxon": "Architeuthis dux"
+  },
+  {
+    "name": "Colossal Squid",
+    "taxon": "Mesonychoteuthis hamiltoni"
+  },
+  {
+    "name": "Common Cuttlefish",
+    "taxon": "Sepia officinalis"
+  },
+  {
+    "name": "Flamboyant Cuttlefish",
+    "taxon": "Metasepia pfefferi"
+  },
+  {
+    "name": "Chambered Nautilus",
+    "taxon": "Nautilus pompilius"
+  },
+  {
+    "name": "Japanese Spider Crab",
+    "taxon": "Macrocheira kaempferi"
+  },
+  {
+    "name": "American Lobster",
+    "taxon": "Homarus americanus"
+  },
+  {
+    "name": "European Lobster",
+    "taxon": "Homarus gammarus"
+  },
+  {
+    "name": "Coconut Crab",
+    "taxon": "Birgus latro"
+  },
+  {
+    "name": "Red King Crab",
+    "taxon": "Paralithodes camtschaticus"
+  },
+  {
+    "name": "Peacock Mantis Shrimp",
+    "taxon": "Odontodactylus scyllarus"
+  },
+  {
+    "name": "Atlantic Horseshoe Crab",
+    "taxon": "Limulus polyphemus"
+  },
+  {
+    "name": "Crown-of-thorns Starfish",
+    "taxon": "Acanthaster planci"
+  },
+  {
+    "name": "Sunflower Sea Star",
+    "taxon": "Pycnopodia helianthoides"
+  },
+  {
+    "name": "Giant Clam",
+    "taxon": "Tridacna gigas"
+  },
+  {
+    "name": "Portuguese Man o' War",
+    "taxon": "Physalia physalis"
+  },
+  {
+    "name": "Lion's Mane Jellyfish",
+    "taxon": "Cyanea capillata"
+  },
+  {
+    "name": "Moon Jellyfish",
+    "taxon": "Aurelia aurita"
+  },
+  {
+    "name": "Australian Box Jellyfish",
+    "taxon": "Chironex fleckeri"
+  },
+  {
+    "name": "Blue Glaucus",
+    "taxon": "Glaucus atlanticus"
+  },
+  {
+    "name": "Giant Isopod",
+    "taxon": "Bathynomus giganteus"
+  }
+]
