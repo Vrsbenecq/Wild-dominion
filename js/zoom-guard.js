@@ -1,0 +1,1 @@
+document.addEventListener('gesturestart',e=>{if(!e.target.closest?.('.photo-stage'))e.preventDefault()},{passive:false});document.addEventListener('gesturechange',e=>{if(!e.target.closest?.('.photo-stage'))e.preventDefault()},{passive:false});document.addEventListener('touchmove',e=>{if(e.touches.length>1&&!e.target.closest?.('.photo-stage'))e.preventDefault()},{passive:false});
